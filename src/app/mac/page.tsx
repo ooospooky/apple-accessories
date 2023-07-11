@@ -15,6 +15,8 @@ export default function Mac() {
         </div>
       </div>
 
+      <h2 className="text-5xl font-semibold tracking-normal pb-16 pt-24 text-center" data-analytics-section="Mac 精選配件">Mac 精選配件</h2>
+
       {/* Porducts */}
       <div  className='w-full px-40 '>
         <ul className="w-full flex flex-wrap m-0 mb-20">
