@@ -158,7 +158,7 @@ export const allProducts: IProduct[] = [
     name: "運動型錶帶",
     width: 710,
     height: 465,
-    src: "/watch/SoloLoop.png",
+    src: "/watch/SportBand.png",
     price: 1600,
   },
   {
@@ -185,7 +185,7 @@ export const allProducts: IProduct[] = [
     name: "米蘭式錶環",
     width: 266,
     height: 291,
-    src: "/watch/Milanese Loop.png",
+    src: "/watch/MilaneseLoop.png",
     price: 3100,
   },
 ];
