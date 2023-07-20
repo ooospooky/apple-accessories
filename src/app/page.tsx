@@ -13,7 +13,7 @@ export default function Home() {
           <Image src="/apple-homepage.jpg" alt="Homepage-IMG" height={500} width={500} />
         </div>
       </div>
-      <div className='mx-40'>
+      <div className='mx-96'>
         <div className="borderline my-20 border-t border-solid border-[#d2d2d7] "></div>
 
         <div className="container w-full h-full mt-8 ">
