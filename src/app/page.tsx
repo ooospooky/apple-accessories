@@ -21,7 +21,7 @@ export default function Home() {
             {iconProduct.map(({ product, src, alt }) => {
               return (
                 <li key={product} className='outline-none text-center w-48'>
-                  <Link href="/mac">
+                  <Link href={`/${alt}`}>
                     <div className="m-0 align-middle p-8 inline-block relative rounded-full border-2 border-solid border-[#d2d2d7]">
                       <Image className="rf-browser-itemicon" src={src} width={75} height={75} alt={alt} />
                     </div>
