@@ -1,6 +1,5 @@
 import React from 'react'
 import Image from 'next/image'
-import { allProducts } from '../components/allProducts'
 import { ProductList } from '../components/ProductList'
 export default function Mac() {
   return (
@@ -19,7 +18,7 @@ export default function Mac() {
       <h2 className="text-5xl font-semibold tracking-normal pb-16 pt-24 text-center" data-analytics-section="Mac 精選配件">Mac 精選配件</h2>
 
       {/* Porducts */}
-      <div className='w-8/12 m-auto '>
+      <div className='w-full m-auto '>
         <ul className="w-full flex flex-wrap m-0 mb-20">
           < ProductList type='mac' />
         </ul>

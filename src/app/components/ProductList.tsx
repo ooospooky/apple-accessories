@@ -6,10 +6,10 @@ interface IproductList {
 }
 export const ProductList: React.FC<IproductList> = ({ type }) => {
   return (
-    <div className='w-8/12 m-auto '>
+    <div className='w-7/12 m-auto '>
       <ul className="w-full flex flex-wrap m-0 mb-20">
-        {allProducts.map((product, index) => (
-          <ProductCard key={index} {...product} productIndex={index + 1} />
+        {allProducts.map((product) => (
+          product.category === type ? <ProductCard key={product.id} {...product} /> : null
         ))}
       </ul>
     </div>
