@@ -4,14 +4,13 @@ import { ProductList } from '../components/ProductList'
 export default function Mac() {
   return (
     <div className='w-full'>
-      <div className='header w-full h-full bg-gray-100 flex flex-row'>
-        <div className='basis-2/5 my-60 ml-40 text-center'>
-          <h2 className=" text-7xl mb-10">締造完美連接。</h2>
-          <p className="text-3xl">選購電源與連接線</p>
+      <div className='headblock w-full h-full flex flex-row bg-[#fbfbfd] px-80  '  >
+        <div className="info basis-1/2 flex flex-col justify-center items-center  gap-12" >
+          <h2 className="text-5xl">不只做更多，還做得漂亮。</h2>
+          <p className='text-2xl'>選購保護配件與防護</p>
         </div>
-        <div className='basis-3/5 ' >
-          <Image className='mt-40 ml-auto h-24 w-4/5 ' src='/mac/mac-cables-accessories-usbc.png' width={986} height={58} alt="ucbc"></Image>
-          <Image className='mt-16 h-32' src='/mac/mac-cables-accessories-magsafe.png' width={1152} height={120} alt="ucbc"></Image>
+        <div className='basis-1/2 -ml-28' >
+          <Image className=' ' src="/ipad/ipad-page.png" alt="Homepage-IMG" height={480} width={900} />
         </div>
       </div>
 
