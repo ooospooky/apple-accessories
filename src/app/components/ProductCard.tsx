@@ -20,7 +20,7 @@ export const ProductCard: React.FC<IProduct> = ({ id, category, name, width, hei
           <h3 className="text-center font-semibold text-lg mb-10 ">{name}</h3>
           <p className='text-center font-normal text-base mb-20'>NT{formattedPrice}</p>
         </div>
-      </Link> 
+      </Link>
 
     </li>
   )

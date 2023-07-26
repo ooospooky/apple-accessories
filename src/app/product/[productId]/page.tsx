@@ -89,8 +89,8 @@ export default function productId({ params }: { params: { productId: string } })
 
         </div>
         <div className="basis-2/3">
-          <div className="w-full h-full  ">
-            <Image src={src} layout="responsive" height={1} width={1} alt='' className='max-w-5xl max-h-5xl' />
+          <div className="w-full h-full  m-auto ">
+            <Image src={src} layout="responsive" height={1} width={1} alt='' className='object-fill m-auto max-w-5xl max-h-5xl' />
           </div>
         </div>
       </div>
