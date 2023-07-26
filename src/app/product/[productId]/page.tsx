@@ -1,8 +1,12 @@
 'use client'
-import React from 'react'
+import React, { useState } from 'react'
 import { allProducts, IProduct } from '@/app/components/allProducts'
 import Image from 'next/image';
-export default function productId({ params }: { params: { productId: string } }) {
+import getNextTwoDays from '@/app/helper/getNextTwoDays';
+import { OrderTimeAndDate } from '@/app/components/OrderTimeAndDate';
+
+
+export default function ProductId({ params }: { params: { productId: string } }) {
   const foundProduct = allProducts.find((item) => item.id === params.productId);
   const { id, category, name, width, height, src, price }: IProduct = foundProduct || {} as IProduct;
 
@@ -11,6 +15,7 @@ export default function productId({ params }: { params: { productId: string } })
     currency: 'TWD',
     minimumFractionDigits: 0,
   });
+
   return (
     <div className="w-full h-full   ">
       <div className="w-9/12 h-full my-12 mx-auto flex flex-row">
@@ -65,10 +70,7 @@ export default function productId({ params }: { params: { productId: string } })
               </li>
             </ul>
           </div>
-          <div className="flex flex-col gap-1">
-            <span className="text-xl font-semibold">立即訂購。店內取貨：</span>
-            <span className="text-xl font-normal">今天，地點：Apple 台北 101</span>
-          </div>
+          <OrderTimeAndDate flexDirection='flex-col' />
           <div>
             <button className="inline-block w-full px-2 py-4 rounded-xl cursor-pointer text-center whitespace-no-wrap text-base font-normal bg-[#0071e3] hover:bg-[#0077ed] text-white  ">加入購物車</button>
           </div>
@@ -89,7 +91,7 @@ export default function productId({ params }: { params: { productId: string } })
 
         </div>
         <div className="basis-2/3">
-          <div className="w-full h-full  m-auto ">
+          <div className="w-full h-full  m-auto  ">
             <Image src={src} layout="responsive" height={1} width={1} alt='' className='object-fill m-auto max-w-5xl max-h-5xl' />
           </div>
         </div>
