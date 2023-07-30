@@ -5,6 +5,23 @@ module.exports = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  safelist: [
+    "bg-black",
+    "bg-gray-200",
+    "bg-rose-500",
+    "bg-blue-500",
+    "bg-stone-700",
+    "bg-orange-900",
+    "bg-green-950",
+    "bg-yellow-300",
+    "bg-zinc-700",
+    "bg-lime-400",
+    "bg-orange-400",
+    "bg-purple-400",
+    "bg-blue-900",
+    "bg-yellow-200",
+    "bg-orange-200",
+  ],
   theme: {
     extend: {
       backgroundImage: {
