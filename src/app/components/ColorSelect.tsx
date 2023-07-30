@@ -15,7 +15,7 @@ export const ColorSelect: React.FC<ColorsSelectProps> = ({ colorsType, colors, s
     if (selectedColor === null) {
       setSelectedColor(colorsType[0]);
     }
-  }, [selectedColor, colorsType]);
+  }, [selectedColor, colorsType, setSelectedColor]);
 
   return (
     <div>
@@ -34,7 +34,7 @@ export const ColorSelect: React.FC<ColorsSelectProps> = ({ colorsType, colors, s
                   onChange={handleColorChange}
                 />
                 <div
-                  className={`w-16 h-16 rounded-full bg-${color} peer-checked/color:ring peer-checked/color:ring-blue-500 peer-checked/color:ring-offset-4`}
+                  className={`w-16 h-16 rounded-full ${color} peer-checked/color:ring peer-checked/color:ring-blue-500 peer-checked/color:ring-offset-4`}
                 ></div>
               </label>
             </li>
