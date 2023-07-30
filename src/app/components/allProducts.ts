@@ -67,8 +67,8 @@ export const allProducts: IProduct[] = [
     height: 291,
     src: "/mac/product-keyboard.png",
     price: 5890,
-    colorsType: ["白色按鍵", "黑色按鍵"],
-    colors: ["gray-100", "black"],
+    colorsType: ["黑色按鍵", "白色按鍵"],
+    colors: ["bg-black", "bg-gray-200"],
     productInfo: [
       "巧控鍵盤配備 Touch ID，提供快速、簡單且安全的認證方式，作為登入與購物之用。<br/><br/>含 Touch ID 和數字鍵盤的巧控鍵盤提供格外舒適且精準的打字體驗。它延伸了鍵盤布局，具備用於快速捲動的文件導覽控制鍵及適合玩遊戲的全尺寸方向鍵。數字鍵盤也非常適合用於試算表和財務相關應用程式上。採用無線設計，配備充電式電池，每次充電後能為鍵盤提供約一個月或更長時間的電力¹。還能與你的 Mac 自動配對，讓你立即開始工作。它並隨附一條編織的 USB-C 對 Lightning 連接線，用來連接到 Mac 上的 USB-C 埠，方便進行配對與充電。",
       "含 Touch ID 和數字鍵盤的巧控鍵盤USB-C 對 Lightning 連接線",
@@ -84,6 +84,8 @@ export const allProducts: IProduct[] = [
     height: 291,
     src: "/mac/key1.png",
     price: 4390,
+    colorsType: ["黑色多點觸控表面", "白色多點觸控表面"],
+    colors: ["bg-black", "bg-gray-200"],
     productInfo: [
       "巧控板採用無線技術及充電式設計，並支援完整的「多點觸控」手勢與力度觸控技術。觸控式軌跡板下方的感測器能偵測你點按力度的細微差異，讓你能用指尖操控更多功能，與你的內容產生更緊密的連結。它的無邊框玻璃表面範圍寬廣，讓你在捲動及滑動時，比以往更有效率且更舒適。<br/><br/>巧控板會與你的 Mac 自動配對，讓你可以立即開始工作。配備充電式電池，每次完全充電能提供一個月或更長時間的電力。它也隨附一條編織的 USB-C 對 Lightning 連接線，用來連接到 Mac 上的 USB-C 埠，方便進行配對與充電。",
       "巧控板<br/>USB-C 對 Lightning 連接線",
@@ -100,6 +102,8 @@ export const allProducts: IProduct[] = [
     height: 291,
     src: "/mac/product-mouse.png",
     price: 2790,
+    colorsType: ["黑色多點觸控表面", "白色多點觸控表面"],
+    colors: ["bg-black", "bg-gray-200"],
     productInfo: [
       `巧控滑鼠採用無線及可充電式設計，且底部設計再更精進，能順暢地在桌面上滑動。多點觸控表面可讓你使用簡單手勢操作，例如滑動切換網頁和捲動瀏覽文件等。
       <br/>
@@ -154,11 +158,13 @@ Lightning 連接器
   {
     id: "8",
     category: "ipad",
-    name: "聰穎雙面夾，適用於 iPad (第 10 代) - 西瓜色",
+    name: "聰穎雙面夾，適用於 iPad (第 10 代)",
     width: 266,
     height: 291,
     src: "/ipad/ipad_folio.png",
     price: 2590,
+    colorsType: ["西瓜色", "晴空色", "白色"],
+    colors: ["bg-rose-500", "bg-blue-500", "bg-gray-200"],
     productInfo: formatArray([
       `
 這款適用於 iPad 的聰穎雙面夾纖薄輕盈，可保護裝置的正面與背面。掀開時即可自動喚醒你的 iPad，闔上就能讓它進入睡眠狀態。聰穎雙面夾會以磁力吸附，你可輕鬆將它摺疊成不同形狀的立架，以利閱讀、觀看、打字或進行 FaceTime 通話。`,
@@ -168,11 +174,13 @@ Lightning 連接器
   {
     id: "9",
     category: "ipad",
-    name: "巧控鍵盤，適用於 iPad Pro 12.9 吋 (第 6 代) - 黑色",
+    name: "巧控鍵盤，適用於 iPad Pro 12.9 吋 (第 6 代)",
     width: 266,
     height: 291,
     src: "/ipad/ipad_keyboard.png",
     price: 11690,
+    colorsType: ["黑色", "白色"],
+    colors: ["bg-black", "bg-gray-200"],
     productInfo: formatArray([
       `
       巧控鍵盤是 iPad Pro 12.9 吋的精彩絕配。它帶來令人驚豔的打字體驗，觸控式軌跡板更開啟使用 iPadOS 的各種新方式，USB‑C 埠可用於直通充電，並能保護機身的正面及背面。巧控鍵盤採用懸臂設計，以磁力吸附 iPad Pro，讓你能順暢調整至最適合你觀看的視角。`,
@@ -224,11 +232,13 @@ USB-C 埠可用於為 iPad Pro 充電 ，讓你能騰出 iPad 上的連接埠用
   {
     id: "11",
     category: "iphone",
-    name: "iPhone 14 Pro MagSafe 皮革保護殼 - 墨水色",
+    name: "iPhone 14 Pro MagSafe 皮革保護殼",
     width: 266,
     height: 291,
     src: "/iphone/iPhone14ProLeatherCasewithMagSafeInk.png",
     price: 1790,
+    colorsType: ["墨水色", "赭紅色", "森林綠色"],
+    colors: ["bg-stone-700", "bg-orange-900", "bg-green-950"],
     productInfo: formatArray([
       `
 這款 MagSafe 皮革保護殼由 Apple 專為搭配 iPhone 14 Pro 而設計，能為 iPhone 提供額外保護並增添風格，讓你用起來開心合意。
@@ -254,6 +264,8 @@ USB-C 埠可用於為 iPad Pro 充電 ，讓你能騰出 iPad 上的連接埠用
     height: 465,
     src: "/iphone/iPhone14ProSiliconeCasewithMagSafeCanaryYellow.png",
     price: 1490,
+    colorsType: ["金絲雀黃色", "橄欖色", "晴空色"],
+    colors: ["bg-yellow-300", "bg-zinc-700", "bg-blue-500"],
     productInfo: formatArray([
       `
       這款 MagSafe 矽膠保護殼由 Apple 專為搭配 iPhone 14 Pro 而設計，能保護 iPhone，讓你用起來開心合意。
@@ -277,6 +289,8 @@ USB-C 埠可用於為 iPad Pro 充電 ，讓你能騰出 iPad 上的連接埠用
     height: 291,
     src: "/iphone/iPhoneLeatherWalletwithMagSafe.png",
     price: 1790,
+    colorsType: ["橙色", "赭紅色", "墨水色"],
+    colors: ["bg-orange-500", "bg-orange-900", "bg-stone-700"],
     productInfo: formatArray([
       `
       全新 iPhone MagSafe 皮革卡套兼具風格與功能，用來放你的證件和信用卡，近在手邊，好方便。現在，它還支援「尋找」功能，一旦卡套與手機分離，你便會收到通知，掌握卡套最後的已知位置。
@@ -466,6 +480,8 @@ Lightning 對 USB-C 連接線
     height: 291,
     src: "/watch/SoloLoop.png",
     price: 1600,
+    colorsType: ["芽綠色", "橄欖色"],
+    colors: ["bg-lime-400", "bg-zinc-700"],
     productInfo: formatArray([
       `單圈錶環以液態矽膠橡膠製成，具延展性的獨特設計，沒有錶扣、扣環或重疊的部分，因此，配戴超舒適，戴上手腕與取下都很輕鬆方便。每條錶帶都經過紫外線特殊處理，賦予錶帶光滑如絲的外觀。游泳適用，流汗也不怕，讓你隨時隨地都能配戴。
       `,
@@ -497,6 +513,8 @@ Lightning 對 USB-C 連接線
     height: 291,
     src: "/watch/BraidedSoloLoop.png",
     price: 3100,
+    colorsType: ["鮮橙色", "霧紫色", "橄欖色"],
+    colors: ["bg-orange-400", "bg-purple-400", "bg-zinc-700"],
     productInfo: formatArray([
       `每款編織單圈錶環錶帶都採用獨特的彈性設計，不但戴起來超舒適，從手腕戴上或取下也輕鬆容易。它以 16,000 條回收再生聚酯纖維紗繩細絲環繞超細矽膠線打造，使用先進、精密的編織機器製作，再以雷射切割出精準長度，達到訂製般的舒適貼合。錶帶手感柔軟且紋理豐富，還能抗汗抗水。`,
       `Apple Watch 編織單圈錶環`,
@@ -512,6 +530,8 @@ Lightning 對 USB-C 連接線
     height: 291,
     src: "/watch/SportLoop.png",
     price: 1600,
+    colorsType: ["午夜色", "風暴藍色", "星光色"],
+    colors: ["bg-zinc-700", "bg-blue-900", "bg-yellow-200"],
     productInfo: formatArray([
       `運動型錶環柔軟、透氣又輕盈，搭配魔鬼氈扣帶，可快速地輕鬆調整。錶環以雙層尼龍織製而成，貼近皮膚的一面織圈緻密，形成舒適軟墊，同時方便排汗；反折面具備吸附力，可牢牢固定在錶環上，更加牢固耐用。`,
       `Apple Watch 運動型錶環`,
@@ -527,6 +547,8 @@ Lightning 對 USB-C 連接線
     height: 291,
     src: "/watch/MilaneseLoop.png",
     price: 3100,
+    colorsType: ["金色", "橄欖色"],
+    colors: ["bg-orange-200", "bg-zinc-700"],
     productInfo: formatArray([
       `這款錶環以現代風格演繹 19 世紀末義大利米蘭的設計。平滑的不鏽鋼織網由特製的義大利設備編織而成，自然環繞你腕間。由於整個錶帶都具磁性，米蘭式錶環可任意調整，確保和你的手腕完美貼合。外加的的物理氣相沉積處理 (PVD) 塗層，讓金色不鏽鋼呈現獨特的不凡質感。`,
       `Apple Watch 米蘭式錶環`,
