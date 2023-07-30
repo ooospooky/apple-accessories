@@ -6,6 +6,8 @@ export interface IProduct {
   height: number;
   src: string;
   price: number;
+  colorsType?: null | string[];
+  colors?: null | string[];
   productInfo?: string[];
   compatibilityInfo?: string[];
 }
@@ -39,6 +41,8 @@ export const allProducts: IProduct[] = [
     height: 291,
     src: "/mac/product-poweradapter.png",
     price: 1690,
+    colorsType: null,
+    colors: null,
     productInfo: [
       "無論在家中、辦公室或外出時，35W 雙 USB-C 埠小型電源轉接器讓你都能同時為兩部裝置充電。精巧的尺寸與折疊式插腳，讓你輕鬆攜帶及存放。Apple 建議與 MacBook Air 搭配使用，你也可以將它與 iPhone、iPad、Apple Watch 和 AirPods 搭配使用。",
       "Apple 35W 雙 USB-C 埠小型電源轉接器",
@@ -63,6 +67,8 @@ export const allProducts: IProduct[] = [
     height: 291,
     src: "/mac/product-keyboard.png",
     price: 5890,
+    colorsType: ["白色按鍵", "黑色按鍵"],
+    colors: ["gray-100", "black"],
     productInfo: [
       "巧控鍵盤配備 Touch ID，提供快速、簡單且安全的認證方式，作為登入與購物之用。<br/><br/>含 Touch ID 和數字鍵盤的巧控鍵盤提供格外舒適且精準的打字體驗。它延伸了鍵盤布局，具備用於快速捲動的文件導覽控制鍵及適合玩遊戲的全尺寸方向鍵。數字鍵盤也非常適合用於試算表和財務相關應用程式上。採用無線設計，配備充電式電池，每次充電後能為鍵盤提供約一個月或更長時間的電力¹。還能與你的 Mac 自動配對，讓你立即開始工作。它並隨附一條編織的 USB-C 對 Lightning 連接線，用來連接到 Mac 上的 USB-C 埠，方便進行配對與充電。",
       "含 Touch ID 和數字鍵盤的巧控鍵盤USB-C 對 Lightning 連接線",
@@ -76,7 +82,7 @@ export const allProducts: IProduct[] = [
     name: "巧控板",
     width: 266,
     height: 291,
-    src: "/mac/product-controlboard.png",
+    src: "/mac/key1.png",
     price: 4390,
     productInfo: [
       "巧控板採用無線技術及充電式設計，並支援完整的「多點觸控」手勢與力度觸控技術。觸控式軌跡板下方的感測器能偵測你點按力度的細微差異，讓你能用指尖操控更多功能，與你的內容產生更緊密的連結。它的無邊框玻璃表面範圍寬廣，讓你在捲動及滑動時，比以往更有效率且更舒適。<br/><br/>巧控板會與你的 Mac 自動配對，讓你可以立即開始工作。配備充電式電池，每次完全充電能提供一個月或更長時間的電力。它也隨附一條編織的 USB-C 對 Lightning 連接線，用來連接到 Mac 上的 USB-C 埠，方便進行配對與充電。",
