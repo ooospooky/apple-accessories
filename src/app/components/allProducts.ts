@@ -4,7 +4,7 @@ export interface IProduct {
   name: string;
   width: number;
   height: number;
-  coverImage?: string;
+  coverImage: string;
   src: { [key: string]: string[] };
   price: number;
   colorsType?: null | string[];
