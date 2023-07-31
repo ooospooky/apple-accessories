@@ -4,7 +4,8 @@ export interface IProduct {
   name: string;
   width: number;
   height: number;
-  src: string;
+  coverImage?: string;
+  src: { [key: string]: string[] };
   price: number;
   colorsType?: null | string[];
   colors?: null | string[];
@@ -21,9 +22,6 @@ const macList =
   "<b>Mac 機型</b><br/>MacBook Air (13 吋，M2，2022 年)<br/>MacBook Air (15 吋，M2，2023 年)<br/>MacBook Air (M1，2020 年)<br/> MacBook Pro (13 吋，M2，2022 年)<br/> MacBook Pro (13 吋，M1，2020 年)<br/> MacBook Pro (14 吋，2023 年)<br/> MacBook Pro (14 吋，2021 年)<br/> MacBook Pro (16 吋，2023 年)<br/> MacBook Pro (16 吋，2021 年)<br/> iMac (24 吋，M1，2021 年)<br/> Mac Studio (2023 年)<br/>Mac Studio (2022 年)<br/> Mac mini (2023 年)<br/> Mac mini (M1，2020 年)<br/> Mac Pro (2023 年)";
 const appleWatchList =
   "<b>Apple Watch 錶款</b><br/>42 公釐<br/>44 公釐<br/>45 公釐<br/>49 公釐";
-function formatText(text: string) {
-  return text.replace(/\n/g, "<br/>\n");
-}
 
 function formatArray(arr: string[]) {
   const result = arr.map((item) => {
@@ -39,7 +37,14 @@ export const allProducts: IProduct[] = [
     name: "35W 雙 USB-C 埠小型電源轉接器",
     width: 266,
     height: 291,
-    src: "/mac/product-poweradapter.png",
+    coverImage: "/mac/poweradapter/cover.png",
+    src: {
+      noColor: [
+        "/mac/poweradapter/MNWM3.png",
+        "/mac/poweradapter/MNWM3_AV1.png",
+        "/mac/poweradapter/MNWM3_AV2.png",
+      ],
+    },
     price: 1690,
     colorsType: null,
     colors: null,
@@ -56,7 +61,8 @@ export const allProducts: IProduct[] = [
     name: "Studio Display",
     width: 710,
     height: 465,
-    src: "/mac/product-display.png",
+    coverImage: "/mac/studioDisplay/MK0U3_FV404.png",
+    src: { noColor: ["/mac/studioDisplay/MK0U3_FV404.png"] },
     price: 45900,
   },
   {
@@ -65,7 +71,19 @@ export const allProducts: IProduct[] = [
     name: "含 Touch ID 和數字鍵盤的巧控鍵盤",
     width: 266,
     height: 291,
-    src: "/mac/product-keyboard.png",
+    coverImage: "/mac/keyboard/cover.png",
+    src: {
+      黑色按鍵: [
+        "/mac/keyboard/black/MMMR3TA.png",
+        "/mac/keyboard/black/MMMR3TA_AV1.png",
+        "/mac/keyboard/black/MMMR3TA_AV2.png",
+      ],
+      白色按鍵: [
+        "/mac/keyboard/white/MK2C3TA.png",
+        "/mac/keyboard/white/MK2C3TA_AV1.png",
+        "/mac/keyboard/white/MK2C3TA_AV2.png",
+      ],
+    },
     price: 5890,
     colorsType: ["黑色按鍵", "白色按鍵"],
     colors: ["bg-black", "bg-gray-200"],
@@ -82,7 +100,19 @@ export const allProducts: IProduct[] = [
     name: "巧控板",
     width: 266,
     height: 291,
-    src: "/mac/key1.png",
+    coverImage: "/mac/trackpad/cover.png",
+    src: {
+      黑色多點觸控表面: [
+        "/mac/trackpad/black/MMMP3.png",
+        "/mac/trackpad/black/MMMP3_AV1.png",
+        "/mac/trackpad/black/MMMP3_AV2.png",
+      ],
+      白色多點觸控表面: [
+        "/mac/trackpad/white/MK2D3.png",
+        "/mac/trackpad/white/MK2D3_AV1.png",
+        "/mac/trackpad/white/MK2D3_AV2.png",
+      ],
+    },
     price: 4390,
     colorsType: ["黑色多點觸控表面", "白色多點觸控表面"],
     colors: ["bg-black", "bg-gray-200"],
@@ -100,7 +130,19 @@ export const allProducts: IProduct[] = [
     name: "巧控滑鼠",
     width: 266,
     height: 291,
-    src: "/mac/product-mouse.png",
+    coverImage: "/mac/mouse/cover.png",
+    src: {
+      黑色多點觸控表面: [
+        "/mac/mouse/black/MMMQ3.png",
+        "/mac/mouse/black/MMMQ3_AV1.png",
+        "/mac/mouse/black/MMMQ3_AV2.png",
+      ],
+      白色多點觸控表面: [
+        "/mac/mouse/white/MK2E3.png",
+        "/mac/mouse/white/MK2E3_AV1.png",
+        "/mac/mouse/white/MK2E3_AV2.png",
+      ],
+    },
     price: 2790,
     colorsType: ["黑色多點觸控表面", "白色多點觸控表面"],
     colors: ["bg-black", "bg-gray-200"],
@@ -120,7 +162,14 @@ export const allProducts: IProduct[] = [
     name: "Apple Pencil (第 1 代)",
     width: 266,
     height: 291,
-    src: "/ipad/Apple_Pencil1.png",
+    coverImage: "/ipad/applePencil1st/cover.png",
+    src: {
+      noColor: [
+        "/ipad/applePencil1st/MK0C2.jpeg",
+        "/ipad/applePencil1st/MK0C2_AV1.jpeg",
+        "/ipad/applePencil1st/MK0C2_AV2.jpeg",
+      ],
+    },
     price: 3290,
     productInfo: formatArray([
       `Apple Pencil 大大擴展了 iPad 的威力，為創意的無限可能開啟全新境界。它能靈敏感應筆尖的壓力與傾斜角度，你可以輕易控制線條粗細、刻畫細緻陰影，進而產生一系列藝術效果。就像使用傳統鉛筆一樣自然，卻又達到像素等級的精準度。`,
@@ -147,7 +196,14 @@ Lightning 連接器
     name: "巧控鍵盤雙面夾，適用於 iPad (第 10 代)",
     width: 710,
     height: 465,
-    src: "/ipad/ipad_twoside_keyboard.png",
+    coverImage: "/ipad/twosideKeyboard/cover.png",
+    src: {
+      noColor: [
+        "/ipad/twosideKeyboard/MQDP3TA.jpeg",
+        "/ipad/twosideKeyboard/MQDP3TA_AV1.jpeg",
+        "/ipad/twosideKeyboard/MQDP3TA_AV2.jpeg",
+      ],
+    },
     price: 8790,
     productInfo: formatArray([
       `
@@ -161,7 +217,24 @@ Lightning 連接器
     name: "聰穎雙面夾，適用於 iPad (第 10 代)",
     width: 266,
     height: 291,
-    src: "/ipad/ipad_folio.png",
+    coverImage: "/ipad/folio/cover.png",
+    src: {
+      西瓜色: [
+        "/ipad/folio/rose500/MQDT3.jpeg",
+        "/ipad/folio/rose500/MQDT3_AV1.jpeg",
+        "/ipad/folio/rose500/MQDT3_AV2.jpeg",
+      ],
+      晴空色: [
+        "/ipad/folio/blue300/MQDU3.jpeg",
+        "/ipad/folio/blue300/MQDU3_AV1.jpeg",
+        "/ipad/folio/blue300/MQDU3_AV2.jpeg",
+      ],
+      白色: [
+        "/ipad/folio/gray200/MQDQ3.jpeg",
+        "/ipad/folio/gray200/MQDQ3_AV1.jpeg",
+        "/ipad/folio/gray200/MQDQ3_AV2.jpeg",
+      ],
+    },
     price: 2590,
     colorsType: ["西瓜色", "晴空色", "白色"],
     colors: ["bg-rose-500", "bg-blue-500", "bg-gray-200"],
@@ -177,7 +250,19 @@ Lightning 連接器
     name: "巧控鍵盤，適用於 iPad Pro 12.9 吋 (第 6 代)",
     width: 266,
     height: 291,
-    src: "/ipad/ipad_keyboard.png",
+    coverImage: "/ipad/keyboard/cover.png",
+    src: {
+      黑色: [
+        "/ipad/keyboard/black/MJQK3TA.png",
+        "/ipad/keyboard/black/MJQK3TA_AV1.png",
+        "/ipad/keyboard/black/MJQK3TA_AV2.png",
+      ],
+      白色: [
+        "/ipad/keyboard/gray200/MJQL3TA.jpeg",
+        "/ipad/keyboard/gray200/MJQL3TA_AV1.jpeg",
+        "/ipad/keyboard/gray200/MJQK3TA_AV2.png",
+      ],
+    },
     price: 11690,
     colorsType: ["黑色", "白色"],
     colors: ["bg-black", "bg-gray-200"],
@@ -206,7 +291,13 @@ USB-C 埠可用於為 iPad Pro 充電 ，讓你能騰出 iPad 上的連接埠用
     name: "Apple Pencil (第 2 代)",
     width: 266,
     height: 291,
-    src: "/ipad/Apple_Pencil2.png",
+    coverImage: "/ipad/applePencil2nd/cover.png",
+    src: {
+      noColor: [
+        "/ipad/applePencil2nd/MU8F2.jpeg",
+        "/ipad/applePencil2nd/MU8F2_AV1.jpeg",
+      ],
+    },
     price: 4390,
     productInfo: formatArray([
       `Apple Pencil (第 2 代) 提供像素等級的精準度，與領先業界的低延遲時間，用來繪畫、塗鴉、著色、做筆記，或在 PDF 上做標示等，再合適不過。一上手，就像使用鉛筆一樣輕鬆自然。
@@ -235,7 +326,24 @@ USB-C 埠可用於為 iPad Pro 充電 ，讓你能騰出 iPad 上的連接埠用
     name: "iPhone 14 Pro MagSafe 皮革保護殼",
     width: 266,
     height: 291,
-    src: "/iphone/iPhone14ProLeatherCasewithMagSafeInk.png",
+    coverImage: "/iphone/iPhone14ProLeatherCasewithMagSafeInk/cover.png",
+    src: {
+      墨水色: [
+        "/iphone/iPhone14ProLeatherCasewithMagSafeInk/stone700/MPPJ3.jpeg",
+        "/iphone/iPhone14ProLeatherCasewithMagSafeInk/stone700/MPPJ3_AV4.jpeg",
+        "/iphone/iPhone14ProLeatherCasewithMagSafeInk/stone700/MPPJ3_AV5.jpeg",
+      ],
+      赭紅色: [
+        "/iphone/iPhone14ProLeatherCasewithMagSafeInk/orange900/MPPK3.jpeg",
+        "/iphone/iPhone14ProLeatherCasewithMagSafeInk/orange900/MPPK3_AV4.jpeg",
+        "/iphone/iPhone14ProLeatherCasewithMagSafeInk/orange900/MPPK3_AV5.jpeg",
+      ],
+      森林綠色: [
+        "/iphone/iPhone14ProLeatherCasewithMagSafeInk/green950/MPPH3.jpeg",
+        "/iphone/iPhone14ProLeatherCasewithMagSafeInk/green950/MPPH3_AV4.jpeg",
+        "/iphone/iPhone14ProLeatherCasewithMagSafeInk/green950/MPPH3_AV5.jpeg",
+      ],
+    },
     price: 1790,
     colorsType: ["墨水色", "赭紅色", "森林綠色"],
     colors: ["bg-stone-700", "bg-orange-900", "bg-green-950"],
@@ -262,7 +370,24 @@ USB-C 埠可用於為 iPad Pro 充電 ，讓你能騰出 iPad 上的連接埠用
     name: "iPhone 14 Pro MagSafe 矽膠保護殼 - 金絲雀黃色",
     width: 710,
     height: 465,
-    src: "/iphone/iPhone14ProSiliconeCasewithMagSafeCanaryYellow.png",
+    coverImage: "/iphone/iPhone14ProSiliconeCasewithMagSafe/cover.png",
+    src: {
+      金絲雀黃色: [
+        "/iphone/iPhone14ProSiliconeCasewithMagSafe/yellow300/MQUG3.jpeg",
+        "/iphone/iPhone14ProSiliconeCasewithMagSafe/yellow300/MQUG3_AV4.jpeg",
+        "/iphone/iPhone14ProSiliconeCasewithMagSafe/yellow300/MQUG3_AV5.jpeg",
+      ],
+      橄欖色: [
+        "/iphone/iPhone14ProSiliconeCasewithMagSafe/zinc700/MQUH3.jpeg",
+        "/iphone/iPhone14ProSiliconeCasewithMagSafe/zinc700/MQUH3_AV4.jpeg",
+        "/iphone/iPhone14ProSiliconeCasewithMagSafe/blue500/MQUJ3_AV5.jpeg",
+      ],
+      晴空色: [
+        "/iphone/iPhone14ProSiliconeCasewithMagSafe/blue500/MQUJ3.jpeg",
+        "/iphone/iPhone14ProSiliconeCasewithMagSafe/blue500/MQUJ3_AV4.jpeg",
+        "/iphone/iPhone14ProSiliconeCasewithMagSafe/blue500/MQUJ3_AV5.jpeg",
+      ],
+    },
     price: 1490,
     colorsType: ["金絲雀黃色", "橄欖色", "晴空色"],
     colors: ["bg-yellow-300", "bg-zinc-700", "bg-blue-500"],
@@ -287,7 +412,24 @@ USB-C 埠可用於為 iPad Pro 充電 ，讓你能騰出 iPad 上的連接埠用
     name: "iPhone MagSafe 皮革卡套",
     width: 266,
     height: 291,
-    src: "/iphone/iPhoneLeatherWalletwithMagSafe.png",
+    coverImage: "/iphone/iPhoneLeatherWalletwithMagSafe/cover.png",
+    src: {
+      橙色: [
+        "/iphone/iPhoneLeatherWalletwithMagSafe/orange500/MPPY3.jpeg",
+        "/iphone/iPhoneLeatherWalletwithMagSafe/orange500/MM0Y3_AV3.png",
+        "/iphone/iPhoneLeatherWalletwithMagSafe/orange500/MM0Y3_AV4.png",
+      ],
+      赭紅色: [
+        "/iphone/iPhoneLeatherWalletwithMagSafe/orange900/MPPX3.jpeg",
+        "/iphone/iPhoneLeatherWalletwithMagSafe/orange900/MM0Y3_AV3.png",
+        "/iphone/iPhoneLeatherWalletwithMagSafe/orange500/MM0Y3_AV4.png",
+      ],
+      墨水色: [
+        "/iphone/iPhoneLeatherWalletwithMagSafe/stone700/MM0Y3.png",
+        "/iphone/iPhoneLeatherWalletwithMagSafe/stone700/MM0Y3_AV3.png",
+        "/iphone/iPhoneLeatherWalletwithMagSafe/stone700/MM0Y3_AV4.png",
+      ],
+    },
     price: 1790,
     colorsType: ["橙色", "赭紅色", "墨水色"],
     colors: ["bg-orange-500", "bg-orange-900", "bg-stone-700"],
@@ -308,7 +450,15 @@ iPhone MagSafe 皮革卡套`,
     name: "AirPods Pro (第 2 代)",
     width: 266,
     height: 291,
-    src: "/iphone/AirPodsPro.png",
+    coverImage: "/iphone/airPodsPro2nd/cover.png",
+    src: {
+      noColor: [
+        "/iphone/airPodsPro2nd/MQD83.jpeg",
+        "/iphone/airPodsPro2nd/MQD83_AV1.jpeg",
+        "/iphone/airPodsPro2nd/MQD83_AV2.jpeg",
+        "/iphone/airPodsPro2nd/MQD83_AV5.jpeg",
+      ],
+    },
     price: 7490,
     productInfo: formatArray([
       `
@@ -456,7 +606,14 @@ Lightning 對 USB-C 連接線
     name: "iPhone 14 MagSafe 透明保護殼",
     width: 266,
     height: 291,
-    src: "/iphone/iPhone14ClearCasewithMagSafe.png",
+    coverImage: "/iphone/iPhone14ClearCasewithMagSafe/cover.png",
+    src: {
+      noColor: [
+        "/iphone/iPhone14ClearCasewithMagSafe/MPU13.jpeg",
+        "/iphone/iPhone14ClearCasewithMagSafe/MPU13_AV1.jpeg",
+        "/iphone/iPhone14ClearCasewithMagSafe/MPU13_AV6.jpeg",
+      ],
+    },
     price: 1490,
     productInfo: formatArray([
       `
@@ -478,10 +635,22 @@ Lightning 對 USB-C 連接線
     name: "單圈錶環",
     width: 266,
     height: 291,
-    src: "/watch/SoloLoop.png",
+    coverImage: "/watch/soloLoop/cover.png",
+    src: {
+      橄欖色: [
+        "/watch/soloLoop/zinc700/MQWD3ref.jpeg",
+        "/watch/soloLoop/zinc700/MQWD3ref_AV1.jpeg",
+        "/watch/soloLoop/zinc700/MQWD3ref_AV2.jpeg",
+      ],
+      芽綠色: [
+        "/watch/soloLoop/lime400/MQX53ref.jpeg",
+        "/watch/soloLoop/lime400/MQX53ref_AV1.jpeg",
+        "/watch/soloLoop/lime400/MQX53ref_AV2.jpeg",
+      ],
+    },
     price: 1600,
-    colorsType: ["芽綠色", "橄欖色"],
-    colors: ["bg-lime-400", "bg-zinc-700"],
+    colorsType: ["橄欖色", "芽綠色"],
+    colors: ["bg-zinc-700", "bg-lime-400"],
     productInfo: formatArray([
       `單圈錶環以液態矽膠橡膠製成，具延展性的獨特設計，沒有錶扣、扣環或重疊的部分，因此，配戴超舒適，戴上手腕與取下都很輕鬆方便。每條錶帶都經過紫外線特殊處理，賦予錶帶光滑如絲的外觀。游泳適用，流汗也不怕，讓你隨時隨地都能配戴。
       `,
@@ -496,8 +665,27 @@ Lightning 對 USB-C 連接線
     name: "運動型錶帶",
     width: 710,
     height: 465,
-    src: "/watch/SportBand.png",
+    coverImage: "/watch/sportBand/cover.png",
+    src: {
+      晴空色: [
+        "/watch/sportBand/blue500/MR2U3ref.png",
+        "/watch/sportBand/blue500/MR2U3ref_AV1.png",
+        "/watch/sportBand/blue500/MR2U3ref_AV2.png",
+      ],
+      橄欖色: [
+        "/watch/sportBand/zinc700/MR2T3ref.png",
+        "/watch/sportBand/zinc700/MR2T3ref_AV1.png",
+        "/watch/sportBand/zinc700/MR2T3ref_AV2.png",
+      ],
+      鮮橙色: [
+        "/watch/sportBand/orange400/MR2R3ref.png",
+        "/watch/sportBand/orange400/MR2R3ref_AV1.png",
+        "/watch/sportBand/orange400/MR2R3ref_AV2.png",
+      ],
+    },
     price: 1600,
+    colorsType: ["晴空色", "橄欖色", "鮮橙色"],
+    colors: ["bg-blue-500", "bg-zinc-700", "bg-orange-400"],
     productInfo: formatArray([
       `以特製的優異 fluoroelastomer 材質打造，讓運動型錶帶格外強韌堅耐，更是意外的輕盈柔軟。柔順緻密的材質，優雅服貼你的手腕，肌膚感受舒適自在。創新的按插式錶扣設計，確保俐落貼合`,
       `Apple Watch 運動型錶帶`,
@@ -511,7 +699,24 @@ Lightning 對 USB-C 連接線
     name: "編織單圈錶環",
     width: 266,
     height: 291,
-    src: "/watch/BraidedSoloLoop.png",
+    coverImage: "/watch/brandsoloLoop/cover.png",
+    src: {
+      鮮橙色: [
+        "/watch/brandsoloLoop/orange400/MQYJ3ref.png",
+        "/watch/brandsoloLoop/orange400/MQYJ3ref_AV1.png",
+        "/watch/brandsoloLoop/orange400/MQYJ3ref_AV2.png",
+      ],
+      霧紫色: [
+        "/watch/brandsoloLoop/purple400/MR1L3ref.png",
+        "/watch/brandsoloLoop/purple400/MR1L3ref_AV1.png",
+        "/watch/brandsoloLoop/purple400/MR1L3ref_AV2.png",
+      ],
+      橄欖色: [
+        "/watch/brandsoloLoop/zinc700/MQYX3ref.png",
+        "/watch/brandsoloLoop/zinc700/MQYX3ref_AV1.png",
+        "/watch/brandsoloLoop/zinc700/MQYX3ref_AV2.png",
+      ],
+    },
     price: 3100,
     colorsType: ["鮮橙色", "霧紫色", "橄欖色"],
     colors: ["bg-orange-400", "bg-purple-400", "bg-zinc-700"],
@@ -528,7 +733,24 @@ Lightning 對 USB-C 連接線
     name: "運動型錶環",
     width: 266,
     height: 291,
-    src: "/watch/SportLoop.png",
+    coverImage: "/watch/sportLoop/cover.png",
+    src: {
+      午夜色: [
+        "/watch/sportLoop/zinc700/MPLA3ref.png",
+        "/watch/sportLoop/zinc700/MPLA3ref_AV1.png",
+        "/watch/sportLoop/zinc700/MPLA3ref_AV2.png",
+      ],
+      風暴藍色: [
+        "/watch/sportLoop/blue900/MPLG3.png",
+        "/watch/sportLoop/blue900/MPLG3_AV1.png",
+        "/watch/sportLoop/blue900/MPLG3_AV2.png",
+      ],
+      星光色: [
+        "/watch/sportLoop/yellow200/MPLE3.png",
+        "/watch/sportLoop/yellow200/MPLE3_AV1.png",
+        "/watch/sportLoop/yellow200/MPLE3_AV2.png",
+      ],
+    },
     price: 1600,
     colorsType: ["午夜色", "風暴藍色", "星光色"],
     colors: ["bg-zinc-700", "bg-blue-900", "bg-yellow-200"],
@@ -545,10 +767,27 @@ Lightning 對 USB-C 連接線
     name: "米蘭式錶環",
     width: 266,
     height: 291,
-    src: "/watch/MilaneseLoop.png",
+    coverImage: "/watch/milaneseLoop/cover.png",
+    src: {
+      金色: [
+        "/watch/milaneseLoop/orange200/ML763.png",
+        "/watch/milaneseLoop/orange200/ML763_AV1.png",
+        "/watch/milaneseLoop/orange200/ML763_AV2.png",
+      ],
+      銀色: [
+        "/watch/milaneseLoop/zinc400/ML783.png",
+        "/watch/milaneseLoop/zinc400/ML783_AV1.png",
+        "/watch/milaneseLoop/zinc400/ML783_AV2.png",
+      ],
+      橄欖色: [
+        "/watch/milaneseLoop/zinc700/ML773.png",
+        "/watch/milaneseLoop/zinc700/ML773_AV1.png",
+        "/watch/milaneseLoop/zinc700/ML773_AV2.png",
+      ],
+    },
     price: 3100,
-    colorsType: ["金色", "橄欖色"],
-    colors: ["bg-orange-200", "bg-zinc-700"],
+    colorsType: ["金色", "銀色", "橄欖色"],
+    colors: ["bg-orange-200", "bg-zinc-400", "bg-zinc-700"],
     productInfo: formatArray([
       `這款錶環以現代風格演繹 19 世紀末義大利米蘭的設計。平滑的不鏽鋼織網由特製的義大利設備編織而成，自然環繞你腕間。由於整個錶帶都具磁性，米蘭式錶環可任意調整，確保和你的手腕完美貼合。外加的的物理氣相沉積處理 (PVD) 塗層，讓金色不鏽鋼呈現獨特的不凡質感。`,
       `Apple Watch 米蘭式錶環`,
