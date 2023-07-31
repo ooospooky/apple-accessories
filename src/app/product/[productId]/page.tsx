@@ -9,13 +9,13 @@ import { PurchaseAssistance } from '@/app/components/PurchaseAssistance';
 import { PriceInfo } from '@/app/components/PriceInfo';
 import { ProductInfoAndCompatibility } from '@/app/components/ProductInfoAndCompatibility';
 import { ColorSelect } from '@/app/components/ColorSelect';
+import { Carousel } from '@/app/components/Carousel';
 
 
 export default function ProductId({ params }: { params: { productId: string } }) {
   const [selectedColor, setSelectedColor] = useState<string | null>(null);
   const foundProduct = allProducts.find((item) => item.id === params.productId);
-  const { id, category, name, width, height, src, price, colorsType, colors, productInfo, compatibilityInfo }: IProduct = foundProduct || {} as IProduct;
-
+  const { id, category, name, width, height, coverImage, src, price, colorsType, colors, productInfo, compatibilityInfo }: IProduct = foundProduct || {} as IProduct;
 
 
   return (
@@ -34,8 +34,8 @@ export default function ProductId({ params }: { params: { productId: string } })
 
         </div>
         <div className="basis-2/3">
-          <div className="w-full h-full  m-auto  ">
-            <Image src={src} layout="responsive" height={1} width={1} alt='' className='object-fill m-auto max-w-5xl max-h-5xl' />
+          <div className="w-full h-full  m-auto flex flex-col content-between ">
+            <Carousel src={src} selectedColor={selectedColor} />
           </div>
         </div>
 
