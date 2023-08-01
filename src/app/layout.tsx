@@ -1,11 +1,13 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import { Roboto } from 'next/font/google'
+import { ReduxProvider } from '@/redux/features/provider'
+
 const roboto = Roboto({
   weight: ['400', '500', '700'],
   subsets: ['latin'],
   display: 'swap',
- })
+})
 
 export const metadata: Metadata = {
   title: 'Apple Store',
@@ -20,7 +22,11 @@ export default function RootLayout({
   return (
     <html lang="en">
 
-      <body className={roboto.className}>{children}</body>
+      <body className={roboto.className}>
+        <ReduxProvider>
+          {children}
+        </ReduxProvider>
+      </body>
     </html>
   )
 }
