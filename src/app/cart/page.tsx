@@ -1,18 +1,27 @@
 "use client"
-import React, { useEffect } from 'react'
+import React, { useState, useEffect, ChangeEvent } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useAppDispatch, useAppSelector } from '@/redux/store'
 
+import { changeProductCount } from '@/redux/features/cartSlice'
 import { allProducts, IProduct } from '../components/allProducts'
 import { AddToCartBtn } from '../components/AddToCartBtn'
 import getFormattedPrice from '../helper/getFormattedPrice'
 import { OrderTimeAndDate } from '../components/OrderTimeAndDate'
 
 export default function Cart() {
+  const dispatch = useAppDispatch()
+
+  const handleProductCountChange = (event: ChangeEvent<HTMLSelectElement> | ChangeEvent<HTMLInputElement>, id: string, color: string) => {
+    console.log(event.target.value, id, color);
+    dispatch(changeProductCount({ id: id, color: color, number: Number(event.target.value) }))
+
+  };
   //使用 useRouter() 以此使用router.back()回到上一頁
   const router = useRouter()
+
 
   //使用 useAppSelector 從 Redux store 中取得購物車狀態資料
   const cart = useAppSelector((state) => state.cartSliceReducer.value)
@@ -33,7 +42,7 @@ export default function Cart() {
   }
   const RenderProduct = () => {
     return (
-      <>
+      <div className='pt-24'>
         {keys.map((id) => {
           // 找到對應 id 的產品資料
           const foundProduct = allProducts.find((item) => item.id === id)
@@ -55,8 +64,9 @@ export default function Cart() {
               const colorOptions = Object.entries(cart[id]).filter(([key, value]) => key !== 'total');
               return colorOptions.map(([color, count]) => {
                 console.log('f', foundProduct.src[color])
+                const isCountLessThanTen = count < 10;
                 return (
-                  <div key={color}>
+                  <div key={color} className="pb-24 mb-24 border-b border-[#d2d2d7]">
                     <div className='w-full flex flex-row'>
                       <div className='basis-1/4' >
                         <Image src={foundProduct.src[color][0]} alt='' height={400} width={400} />
@@ -64,15 +74,41 @@ export default function Cart() {
                       <div className='basis-3/4'>
                         <div className='h-full flex flex-col justify-center '>
                           <div className=" h-1/2 mb-auto mt-3 flex flex-row  text-4xl font-semibold">
-                            <div className="basis-6/12 ">
-                              <Link className="hover:text-[#0071e3]" href={`/product/${foundProduct.id}`}> {foundProduct.name} - {color} </Link>
+                            <div className="basis-6/12 pr-10">
+                              <Link className="hover:text-[#0071e3] " href={`/product/${foundProduct.id}`}> {foundProduct.name} - {color} </Link>
                             </div>
-                            <div className="basis-2/12">{count} </div>
+                            <div className="basis-2/12">
+                              {isCountLessThanTen ? <select
+                                className=""
+                                id="dropdown"
+                                value={count}
+                                onChange={(event) => handleProductCountChange(event, id, color)}
+                              >
+                                {[...Array(10)].map((_, index) => (
+                                  <option key={index + 1} value={index + 1}>
+                                    {index + 1}
+                                  </option>
+                                ))}
+
+                              </select> : <div className="w-32 px-6 py-3 rounded-2xl border border-[#86868b] flex flex-col">
+                                <span className='text-base text-[#86868b]'>數量</span>
+                                <input
+                                  className="w-full text-[#1d1d1f] text-3xl font-normal [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                                  id="quantityInput"
+                                  type="number"
+                                  min="0"
+                                  defaultValue={count}
+                                  onBlur={(event) => handleProductCountChange(event, id, color)}
+                                />
+                              </div>}
+
+
+                            </div>
 
                             <div className="basis-4/12">{getFormattedPrice(foundProduct.price * count)}
                             </div>
                           </div>
-                          <div className='h-1/2'>
+                          <div className='h-1/2 pt-7 border-t border-[#d2d2d7]'>
                             <OrderTimeAndDate flexDirection='flex-row' />
                           </div>
                         </div>
@@ -88,7 +124,7 @@ export default function Cart() {
         <button type="button" onClick={() => router.back()}>
           Click here to go back
         </button>
-      </>
+      </div>
     )
   }
 
