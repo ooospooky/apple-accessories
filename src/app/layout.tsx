@@ -2,6 +2,7 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { Roboto } from 'next/font/google'
 import { ReduxProvider } from '@/redux/features/provider'
+import { Navbar } from './components/Navbar'
 
 const roboto = Roboto({
   weight: ['400', '500', '700'],
@@ -24,6 +25,7 @@ export default function RootLayout({
 
       <body className={roboto.className}>
         <ReduxProvider>
+          <Navbar />
           {children}
         </ReduxProvider>
       </body>
