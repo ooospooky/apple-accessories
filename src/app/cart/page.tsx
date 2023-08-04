@@ -10,24 +10,45 @@ import { allProducts, IProduct } from '../components/allProducts'
 import { AddToCartBtn } from '../components/AddToCartBtn'
 import getFormattedPrice from '../helper/getFormattedPrice'
 import { OrderTimeAndDate } from '../components/OrderTimeAndDate'
+import QuantityField from '../components/QuantityField'
+import { PurchaseAssistance } from '../components/PurchaseAssistance'
 
 export default function Cart() {
+  const [totalPrice, setTotalPrice] = useState(0)
   const dispatch = useAppDispatch()
+  //使用 useAppSelector 從 Redux store 中取得購物車狀態資料
+  const cart = useAppSelector((state) => state.cartSliceReducer.value)
+  //取得購物車中產品的 id 陣列
+  const keys = Object.keys(cart);
+
+
+  // 在需要時更新 totalPrice
+  useEffect(() => {
+    const calculateTotalPrice = () => {
+      return keys.reduce((total, id) => {
+        const foundProduct = allProducts.find((item) => item.id === id);
+        if (cart[id]['total'] > 0 && foundProduct) {
+          return total + foundProduct.price * cart[id]['total'];
+        }
+        return total;
+      }, 0);
+    };
+    setTotalPrice(calculateTotalPrice());
+  }, [cart, keys]);
 
   const handleProductCountChange = (event: ChangeEvent<HTMLSelectElement> | ChangeEvent<HTMLInputElement>, id: string, color: string) => {
-    console.log(event.target.value, id, color);
-    dispatch(changeProductCount({ id: id, color: color, number: Number(event.target.value) }))
+    const count = Number(event.target.value)
+    const number: number = count < 1 ? 1 : count;
+    dispatch(changeProductCount({ id: id, color: color, number: number }))
 
   };
   //使用 useRouter() 以此使用router.back()回到上一頁
   const router = useRouter()
 
 
-  //使用 useAppSelector 從 Redux store 中取得購物車狀態資料
-  const cart = useAppSelector((state) => state.cartSliceReducer.value)
 
-  //取得購物車中產品的 id 陣列
-  const keys = Object.keys(cart);
+
+
 
   const CartHeader = () => {
     return (
@@ -56,7 +77,40 @@ export default function Cart() {
               // 產品沒有顏色選項，顯示產品名稱及總數量
               return (
                 <div key={id}>
-                  {foundProduct.name} x{total}
+                  <div className="pb-24 mb-24 border-b border-[#d2d2d7]">
+                    <div className='w-full flex flex-row'>
+                      <div className='basis-1/4' >
+                        <Image src={foundProduct.src['noColor'][0]} alt='' height={400} width={400} />
+                      </div>
+                      <div className='basis-3/4'>
+                        <div className='h-full flex flex-col justify-center '>
+                          <div className=" h-1/2 mb-auto mt-3 flex flex-row  text-4xl font-semibold">
+                            <div className="basis-6/12 pr-10">
+                              <Link className="hover:text-[#0071e3] " href={`/product/${foundProduct.id}`}> {foundProduct.name}  </Link>
+                            </div>
+                            <div className="basis-2/12">
+                              <QuantityField
+                                count={otherProps['noColor']}
+                                id={id}
+                                color={'noColor'}
+                                handleProductCountChange={handleProductCountChange}
+                              />
+                            </div>
+                            <div className="basis-4/12">
+                              {getFormattedPrice(foundProduct.price * otherProps['noColor'])}
+                            </div>
+                          </div>
+                          <div className='h-1/2 pt-7 border-t border-[#d2d2d7]'>
+                            <OrderTimeAndDate flexDirection='flex-row' />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+
+
                 </div>
               )
             } else {
@@ -64,7 +118,6 @@ export default function Cart() {
               const colorOptions = Object.entries(cart[id]).filter(([key, value]) => key !== 'total');
               return colorOptions.map(([color, count]) => {
                 console.log('f', foundProduct.src[color])
-                const isCountLessThanTen = count < 10;
                 return (
                   <div key={color} className="pb-24 mb-24 border-b border-[#d2d2d7]">
                     <div className='w-full flex flex-row'>
@@ -78,34 +131,15 @@ export default function Cart() {
                               <Link className="hover:text-[#0071e3] " href={`/product/${foundProduct.id}`}> {foundProduct.name} - {color} </Link>
                             </div>
                             <div className="basis-2/12">
-                              {isCountLessThanTen ? <select
-                                className=""
-                                id="dropdown"
-                                value={count}
-                                onChange={(event) => handleProductCountChange(event, id, color)}
-                              >
-                                {[...Array(10)].map((_, index) => (
-                                  <option key={index + 1} value={index + 1}>
-                                    {index + 1}
-                                  </option>
-                                ))}
-
-                              </select> : <div className="w-32 px-6 py-3 rounded-2xl border border-[#86868b] flex flex-col">
-                                <span className='text-base text-[#86868b]'>數量</span>
-                                <input
-                                  className="w-full text-[#1d1d1f] text-3xl font-normal [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-                                  id="quantityInput"
-                                  type="number"
-                                  min="0"
-                                  defaultValue={count}
-                                  onBlur={(event) => handleProductCountChange(event, id, color)}
-                                />
-                              </div>}
-
-
+                              <QuantityField
+                                count={count}
+                                id={id}
+                                color={color}
+                                handleProductCountChange={handleProductCountChange}
+                              />
                             </div>
-
-                            <div className="basis-4/12">{getFormattedPrice(foundProduct.price * count)}
+                            <div className="basis-4/12">
+                              {getFormattedPrice(foundProduct.price * count)}
                             </div>
                           </div>
                           <div className='h-1/2 pt-7 border-t border-[#d2d2d7]'>
@@ -121,21 +155,68 @@ export default function Cart() {
             }
           }
         })}
-        <button type="button" onClick={() => router.back()}>
-          Click here to go back
-        </button>
       </div>
     )
   }
 
+  const Summary = () => {
+    // keys.forEach((id) => {
+    //   const foundProduct = allProducts.find((item) => item.id === id);
+    //   if (cart[id]['total'] > 0 && foundProduct) {
+    //     setTotalPrice((prev) => prev + foundProduct.price * cart[id]['total'])
+    //   }
+    // })
+    return (
+      <div className='w-9/12 flex flex-col ml-auto'>
+        <div className='w-full flex flex-row justify-between text-2xl mb-5'>
+          <span>小計</span>
+          <span>{getFormattedPrice(totalPrice)}</span>
+        </div>
+        <div className='w-full flex flex-row justify-between text-2xl'>
+          <span>運費</span>
+          <span>免額外付費</span>
+        </div>
+        <div className='w-full flex flex-row justify-between pt-9 mt-6 border-t border-[#d2d2d7] text-4xl font-semibold'>
+          <span>你的總金額</span>
+          <span>{getFormattedPrice(totalPrice)}</span>
+        </div>
+        <span className="text-xl text-[#6e6e73] text-right ">含加值型營業稅 NT$1,105</span>
+        <span className="text-xl tracking-wide text-right mt-2 ">欲使用銀行轉帳付款，請致電 0800-020-021。</span>
+      </div>
 
+    )
+  }
+
+  const CashOut = () => {
+    return (
+      <div className='w-9/12 flex justify-end ml-auto'>
+        <button className="w-1/2 inline-block mt-12 px-12 py-6 rounded-xl cursor-pointer text-center whitespace-no-wrap text-2xl font-normal bg-[#0071e3] hover:bg-[#0077ed] text-white  ">結帳</button>
+      </div>
+    )
+  }
+
+  const Assistance = () => {
+    return (
+      <div className='w-full my-24 py-12 border-y border-gray-400 flex flex-row items-center whitespace-nowrap text-2xl '>
+        <span className=" font-semibold">需要進一步協助？</span>
+        <a target="_blank" href="https://contactretail.apple.com/Help" className=" text-[#06c]">
+          立即與我們交流
+        </a>
+        <span className=" font-normal">或致電 0800-020-021。</span>
+      </div>
+    )
+  }
 
   return (
     <div className='h-full w-8/12 m-auto my-20'>
       <CartHeader />
       <RenderProduct />
-
-
+      <Summary />
+      <CashOut />
+      <Assistance />
+      <button type="button" onClick={() => router.back()}>
+        Click here to go back
+      </button>
 
     </div>
   )
