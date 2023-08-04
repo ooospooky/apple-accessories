@@ -160,12 +160,6 @@ export default function Cart() {
   }
 
   const Summary = () => {
-    // keys.forEach((id) => {
-    //   const foundProduct = allProducts.find((item) => item.id === id);
-    //   if (cart[id]['total'] > 0 && foundProduct) {
-    //     setTotalPrice((prev) => prev + foundProduct.price * cart[id]['total'])
-    //   }
-    // })
     return (
       <div className='w-9/12 flex flex-col ml-auto'>
         <div className='w-full flex flex-row justify-between text-2xl mb-5'>
