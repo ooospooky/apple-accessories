@@ -3,9 +3,8 @@
 import React, { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-{/* <Link href="https://flowbite.com/" className="flex items-center">
-          <Image src='/svg/appleLogo.svg' priority width={14} height={44} alt="appleLogo" />
-        </Link> */}
+import { useAppSelector } from '@/redux/store'
+
 export const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -13,14 +12,20 @@ export const Navbar = () => {
     setIsMenuOpen((prevIsMenuOpen) => !prevIsMenuOpen);
   };
 
+  const totalAmount = useAppSelector((state) => state.cartSliceReducer.totalAmount)
+
+
   return (
     <nav className="bg-white border-gray-200">
       <div className="max-w-screen-xl w-6/12 flex flex-wrap justify-evenly items-center mx-auto py-4 ">
         <Link href="/" className="flex items-center md:grow-0 grow">
           <Image src='/svg/appleLogo.svg' priority width={14} height={44} alt="appleLogo" />
         </Link>
-        <Link href='/cart' className='md:order-last'>
-          <Image src='/svg/appleBag.svg' height={25} width={25} alt='' />
+        <Link href='/cart' className='md:order-last relative'>
+          <Image src='/svg/appleBag.svg' height={25} width={25} alt='' className='' />
+          <div className={`${totalAmount ? '' : 'hidden'} absolute  -bottom-1 -right-2 bg-black rounded-full flex justify-center items-center`}>
+            <span className={`${totalAmount > 9 ? 'text-xs py-1 px-[2px]' : 'px-2'}  text-white`}>{totalAmount > 99 ? `99+` : totalAmount}</span>
+          </div>
         </Link>
         <button
           type="button"
@@ -47,7 +52,7 @@ export const Navbar = () => {
               <Link href="/ipad" className="block py-2  pr-4 text-gray-900 rounded md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-700 md:dark:hover:text-blue-500 md:dark:hover:bg-transparent">iPad</Link>
             </li>
             <li>
-              <Link href="/iPhone" className="block py-2  pr-4 text-gray-900 rounded md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-700 md:dark:hover:text-blue-500 md:dark:hover:bg-transparent">iPhone</Link>
+              <Link href="/iphone" className="block py-2  pr-4 text-gray-900 rounded md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-700 md:dark:hover:text-blue-500 md:dark:hover:bg-transparent">iPhone</Link>
             </li>
             <li>
               <Link href="/watch" className="block py-2  pr-4 text-gray-900 rounded md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-700 md:dark:hover:text-blue-500 md:dark:hover:bg-transparent">Watch</Link>
