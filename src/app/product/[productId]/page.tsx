@@ -27,7 +27,6 @@ export default function ProductId({ params }: { params: { productId: string } })
   return (
 
     <div className="w-full h-full   ">
-      <Link href="/cart">Cart</Link>
       <div className="w-7/12 h-full my-12 mx-auto flex flex-row">
         <div className="basis-1/3 flex flex-col gap-12">
           <h2 className="text-6xl font-semibold leading-tight ">{name} -{selectedColor}</h2>

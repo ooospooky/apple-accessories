@@ -208,10 +208,6 @@ export default function Cart() {
       <Summary />
       <CashOut />
       <Assistance />
-      <button type="button" onClick={() => router.back()}>
-        Click here to go back
-      </button>
-
     </div>
   )
 
