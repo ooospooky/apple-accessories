@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { IProduct } from './allProducts'
 import Link from 'next/link';
 
-export const ProductCard: React.FC<IProduct> = ({ id, category, name, width, height, coverImage, src, price }) => {
+export const ProductCard: React.FC<IProduct> = ({ id, category, name, width, height, coverImage, src, price, colors }) => {
   const formattedPrice = price.toLocaleString('zh-TW', {
     style: 'currency',
     currency: 'TWD',
@@ -18,8 +18,16 @@ export const ProductCard: React.FC<IProduct> = ({ id, category, name, width, hei
         </div>
         <div>
           <h3 className="text-center font-semibold text-lg mb-10 ">{name}</h3>
-          <p className='text-center font-normal text-base mb-20'>NT{formattedPrice}</p>
+          <p className='text-center font-normal text-base mb-16'>NT{formattedPrice}</p>
         </div>
+        <ul className="flex flex-row justify-center items-center gap-3 mb-16">
+          {colors?.map((color) => {
+            return (
+              <div key={color} className={`w-[16px] h-[16px] rounded-full ${color}`}>
+              </div>
+            )
+          })}
+        </ul>
       </Link>
 
     </li>
