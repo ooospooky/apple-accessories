@@ -53,7 +53,7 @@ export default function Cart() {
   const CartHeader = () => {
     return (
       <div className='w-full pb-16 border-b border-[#d2d2d7] text-center'>
-        <h1 className='block text-6xl font-semibold'>以下是你購物袋內的商品 NT$37,480。</h1>
+        <h1 className='block text-6xl font-semibold'>以下是你購物袋內的商品 {getFormattedPrice(totalPrice)}。</h1>
         <span className='block text-2xl font-normal pt-10'>所有訂單均享免額外付費運送服務。</span>
         <div className='mt-12 w-1/3 m-auto' >
           <AddToCartBtn btnText="結帳" />
@@ -86,7 +86,7 @@ export default function Cart() {
                         <div className='h-full flex flex-col justify-center '>
                           <div className=" h-1/2 mb-auto mt-3 flex flex-row  text-4xl font-semibold">
                             <div className="basis-6/12 pr-10">
-                              <Link className="hover:text-[#0071e3] " href={`/product/${foundProduct.id}`}> {foundProduct.name}  </Link>
+                              <Link className="hover:text-[#0071e3] " href={`/product/${foundProduct.id}`} > {foundProduct.name}  </Link>
                             </div>
                             <div className="basis-2/12">
                               <QuantityField
