@@ -1,6 +1,8 @@
 import Image from 'next/image'
 import { iconProduct } from './components/iconproduct'
 import Link from 'next/link'
+import SliderComponent from './components/Slider'
+
 export default function Home() {
   return (
     <main className="containter  ">
@@ -33,6 +35,10 @@ export default function Home() {
           </ul>
         </div>
         <div className="borderline my-20 border-t border-solid border-[#d2d2d7]"></div>
+      </div>
+
+      <div className='w-9/12 m-auto'>
+        <SliderComponent />
       </div>
     </main>
   )
