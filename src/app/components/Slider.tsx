@@ -74,7 +74,7 @@ const SliderComponent = () => {
 
             </Slider>
             <div className="w-full text-center pt-20 pb-40">
-              <Link href={`/product/${type}`} className="text-2xl text-[#06c] text-center">選購所有 {linkName} &gt;</Link>
+              <Link href={`/${type}`} className="text-2xl text-[#06c] text-center">選購所有 {linkName} &gt;</Link>
             </div>
           </>
         )
