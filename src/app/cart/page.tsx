@@ -2,6 +2,7 @@
 import React, { useState, useEffect, ChangeEvent } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import axios from 'axios'
 import { useRouter } from 'next/navigation'
 import { useAppDispatch, useAppSelector } from '@/redux/store'
 
