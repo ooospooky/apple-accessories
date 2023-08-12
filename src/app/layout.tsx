@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import { Roboto } from 'next/font/google'
 import { ReduxProvider } from '@/redux/features/provider'
 import { Navbar } from './components/Navbar'
+import { Footer } from './components/Footer'
 
 const roboto = Roboto({
   weight: ['400', '500', '700'],
@@ -27,6 +28,7 @@ export default function RootLayout({
         <ReduxProvider>
           <Navbar />
           {children}
+          <Footer />
         </ReduxProvider>
       </body>
     </html>
