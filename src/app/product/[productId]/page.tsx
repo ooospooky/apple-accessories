@@ -13,8 +13,11 @@ import { ColorSelect } from '@/app/components/ColorSelect';
 import { Carousel } from '@/app/components/Carousel';
 import { useAppDispatch, useAppSelector } from '@/redux/store';
 import { addToCart } from '@/redux/features/cartSlice';
+import loading from '../../../../public/svg/loading.svg';
+import LoadingSvg from '@/app/components/loadingSvg';
 
 export default function ProductId({ params }: { params: { productId: string } }) {
+  const [isLoading, setIsLoading] = useState(false);
   const [selectedColor, setSelectedColor] = useState<string | null>(null);
   const foundProduct = allProducts.find((item) => item.id === params.productId);
   const { id, category, name, width, height, coverImage, src, price, colorsType, colors, productInfo, compatibilityInfo }: IProduct = foundProduct || {} as IProduct;
@@ -22,8 +25,24 @@ export default function ProductId({ params }: { params: { productId: string } })
   const dispatch = useAppDispatch()
 
   const handleAddToCart = () => {
-    dispatch(addToCart({ id: id, color: selectedColor ? selectedColor : 'noColor' }))
+    setIsLoading(true)
+
+    setTimeout(() => {
+      dispatch(addToCart({ id: id, color: selectedColor ? selectedColor : 'noColor' }))
+      setIsLoading(false)
+    }, 700)
   }
+
+  const RenderBtn = () => {
+    return (
+      <div>
+        <button onClick={() => handleAddToCart()} disabled={isLoading} className={`inline-block w-full px-2 py-4 rounded-xl  text-center whitespace-no-wrap text-base font-normal bg-[#0071e3] hover:bg-[#0077ed] text-white  ${isLoading ? ' cursor-not-allowed' : 'cursor-pointer'}`}>
+          {isLoading ? <LoadingSvg /> : '加入購物車'}
+        </button>
+      </div>
+    )
+  }
+
   return (
 
     <div className="w-full h-full   ">
@@ -34,13 +53,9 @@ export default function ProductId({ params }: { params: { productId: string } })
           <PriceInfo price={price} />
           {colors && colorsType && <ColorSelect colors={colors} colorsType={colorsType} selectedColor={selectedColor} setSelectedColor={setSelectedColor} />}
           <OrderTimeAndDate flexDirection='flex-col' />
-          {/* <AddToCartBtn /> */}
-          <div>
-            <button onClick={() => handleAddToCart()} className="inline-block w-full px-2 py-4 rounded-xl cursor-pointer text-center whitespace-no-wrap text-base font-normal bg-[#0071e3] hover:bg-[#0077ed] text-white  ">加入購物車</button>
-          </div>
+          <RenderBtn />
           <CollectionInfo />
           <PurchaseAssistance />
-
 
         </div>
         <div className="basis-2/3">
