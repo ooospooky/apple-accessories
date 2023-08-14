@@ -2,11 +2,10 @@
 import React, { useState, useEffect, ChangeEvent } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import axios from 'axios'
 import { useRouter } from 'next/navigation'
 import { useAppDispatch, useAppSelector } from '@/redux/store'
 
-import { changeProductCount } from '@/redux/features/cartSlice'
+import { changeProductCount, deleteFromCart } from '@/redux/features/cartSlice'
 import { allProducts, IProduct } from '../components/allProducts'
 import { AddToCartBtn } from '../components/AddToCartBtn'
 import getFormattedPrice from '../helper/getFormattedPrice'
@@ -45,11 +44,6 @@ export default function Cart() {
   };
   //使用 useRouter() 以此使用router.back()回到上一頁
   const router = useRouter()
-
-
-
-
-
 
   const CartHeader = () => {
     return (
@@ -97,8 +91,12 @@ export default function Cart() {
                                 handleProductCountChange={handleProductCountChange}
                               />
                             </div>
-                            <div className="basis-4/12">
+                            <div className="basis-4/12 flex flex-col items-end gap-5">
                               {getFormattedPrice(foundProduct.price * otherProps['noColor'])}
+                              <button
+                                className="text-2xl text-[#4182c3] font-normal hover:underline"
+                                onClick={() => dispatch(deleteFromCart({ id: id, color: 'noColor' }))}>
+                                移除</button>
                             </div>
                           </div>
                           <div className='h-1/2 pt-7 border-t border-[#d2d2d7]'>
@@ -139,8 +137,12 @@ export default function Cart() {
                                 handleProductCountChange={handleProductCountChange}
                               />
                             </div>
-                            <div className="basis-4/12">
+                            <div className="basis-4/12 text-right">
                               {getFormattedPrice(foundProduct.price * count)}
+                              <button
+                                className="text-2xl text-[#4182c3] font-normal hover:underline"
+                                onClick={() => dispatch(deleteFromCart({ id: id, color: color }))}>
+                                移除</button>
                             </div>
                           </div>
                           <div className='h-1/2 pt-7 border-t border-[#d2d2d7]'>
@@ -202,6 +204,7 @@ export default function Cart() {
     )
   }
 
+  
   return (
     <div className='h-full w-8/12 m-auto my-20'>
       <CartHeader />
