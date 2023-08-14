@@ -203,8 +203,27 @@ export default function Cart() {
       </div>
     )
   }
+  if (totalPrice <= 0) return (
+    <div className='h-full w-8/12 m-auto my-20'>
+      <div className="flex flex-col gap-12">
+        <h2 className='text-6xl font-semibold'>購物袋中沒有任何商品。</h2>
+        <p className='text-3xl '>登入查看你已儲存的商品。或繼續選購。</p>
+        <Link href="/" className="w-1/2 inline-block  px-12 py-6 rounded-xl cursor-pointer text-center whitespace-no-wrap text-2xl font-normal bg-[#e6e6e6] hover:bg-[#e4e3e3]  ">繼續購物</Link>
+      </div>
+      <Assistance />
+      <div className='relative'>
+        <Image src='/apple-new-arrivals.jpeg' width={980} height={400} alt="new arrivals" className='' />
+        <div className='absolute w-1/2 inset-0 flex flex-col gap-5 items-start justify-center pl-24 '>
+          <h2 className='text-5xl font-semibold  mx-auto'>新品上市</h2>
+          <p className='text-2xl  mx-auto'>查看最新配件。</p>
+          <Link href="/"
+            className="text-2xl text-[#4182c3] font-normal hover:underline  mx-auto">
+            選購 &gt;</Link>
+        </div>
+      </div>
+    </div>
+  )
 
-  
   return (
     <div className='h-full w-8/12 m-auto my-20'>
       <CartHeader />
