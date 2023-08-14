@@ -4,8 +4,8 @@ import React from 'react'
 export const Footer = () => {
   return (
 
-    <footer className="bg-white rounded-lg shadow px-24 py-16  dark:bg-[#f5f5f7]">
-      <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3 pb-10">
+    <footer className="bg-white rounded-lg shadow py-16  dark:bg-[#f5f5f7]">
+      <div className="w-8/12 mx-auto grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3 pb-10 ">
         <div>
 
           <ul className="text-gray-500 dark:text-gray-400 font-medium flex flex-col gap-3">
@@ -69,8 +69,8 @@ export const Footer = () => {
           </ul>
         </div>
       </div>
-      <div className="w-full  max-w-screen-xl pb-3 md:flex md:items-center  md:justify-between">
-        <span className="text-sm text-[#6e6e73] sm:text-center mr-16">Copyright © 2023 Apple Inc. 保留一切權利。</span>
+      <div className="w-8/12   max-w-screen-xl pb-3 md:flex md:items-center  md:m-auto md:justify-between">
+        <span className="text-sm text-[#6e6e73] sm:text-center ">Copyright © 2023 Apple Inc. 保留一切權利。</span>
         <ul className="flex flex-wrap items-center mt-8 text-sm font-medium text-gray-500 dark:text-gray-400 md:mt-0">
           <li>
             <a href="https://www.apple.com/legal/privacy/tzh/" target='_blank' className=" hover:underline  pr-3 border-r border-[#6e6e73]">隱私權政策</a>
