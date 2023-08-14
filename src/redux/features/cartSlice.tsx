@@ -48,12 +48,19 @@ export const cartSlice = createSlice({
       state.value[id].total += numberDiff;
       state.totalAmount += numberDiff;
       // total:2 black:2
-      // total:? black:7
-    })
+      // total:? black:7  加上兩者的差即為新的產品數量
+    }),
+    deleteFromCart: (state, action: PayloadAction<{ id: string; color: string; }>) => {
+      const { id, color } = action.payload;
+      const prevNumber = state.value[id][color]
+      delete state.value[id][color];  //移除該顏色的key
+      state.value[id].total -= prevNumber;
+      state.totalAmount -= prevNumber;
+    },
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { addToCart, changeProductCount } = cartSlice.actions
+export const { addToCart, changeProductCount, deleteFromCart } = cartSlice.actions
 
 export default cartSlice.reducer
