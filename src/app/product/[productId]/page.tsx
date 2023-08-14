@@ -46,7 +46,7 @@ export default function ProductId({ params }: { params: { productId: string } })
   return (
 
     <div className="w-full h-full   ">
-      <div className="w-7/12 h-full my-12 mx-auto flex flex-row">
+      <div className="w-8/12 h-full my-12 mx-auto flex flex-row">
         <div className="basis-1/3 flex flex-col gap-12">
           {/* 有selectedColor時呈現{name} - {selectedColor} 沒有則呈現{name} */}
           <h2 className="text-6xl font-semibold leading-tight ">{name} {selectedColor && `- ${selectedColor}`}</h2>
@@ -66,7 +66,7 @@ export default function ProductId({ params }: { params: { productId: string } })
 
 
       </div>
-      <section className="w-7/12 h-full my-12 mx-auto flex flex-col">
+      <section className="w-8/12 h-full my-12 mx-auto flex flex-col">
         <ProductInfoAndCompatibility productInfo={productInfo} compatibilityInfo={compatibilityInfo} />
       </section>
     </div>
