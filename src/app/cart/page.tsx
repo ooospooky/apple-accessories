@@ -137,7 +137,7 @@ export default function Cart() {
                                 handleProductCountChange={handleProductCountChange}
                               />
                             </div>
-                            <div className="basis-4/12 text-right">
+                            <div className="basis-4/12 flex flex-col items-end gap-5">
                               {getFormattedPrice(foundProduct.price * count)}
                               <button
                                 className="text-2xl text-[#4182c3] font-normal hover:underline"
