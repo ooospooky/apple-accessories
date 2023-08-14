@@ -367,7 +367,7 @@ USB-C 埠可用於為 iPad Pro 充電 ，讓你能騰出 iPad 上的連接埠用
   {
     id: "12",
     category: "iphone",
-    name: "iPhone 14 Pro MagSafe 矽膠保護殼 - 金絲雀黃色",
+    name: "iPhone 14 Pro MagSafe 矽膠保護殼",
     width: 710,
     height: 465,
     coverImage: "/iphone/iPhone14ProSiliconeCasewithMagSafe/cover.png",
