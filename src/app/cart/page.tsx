@@ -177,7 +177,9 @@ export default function Cart() {
           <span>你的總金額</span>
           <span>{getFormattedPrice(totalPrice)}</span>
         </div>
-        <span className="text-xl text-[#6e6e73] text-right ">含加值型營業稅 NT$1,105</span>
+        <span className="text-xl text-[#6e6e73] text-right ">
+          含加值型營業稅{getFormattedPrice(Math.floor(totalPrice * 0.047))}
+        </span>
         <span className="text-xl tracking-wide text-right mt-2 ">欲使用銀行轉帳付款，請致電 0800-020-021。</span>
       </div>
 
