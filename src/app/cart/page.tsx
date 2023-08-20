@@ -12,6 +12,7 @@ import getFormattedPrice from '../helper/getFormattedPrice'
 import { OrderTimeAndDate } from '../components/OrderTimeAndDate'
 import QuantityField from '../components/QuantityField'
 import { PurchaseAssistance } from '../components/PurchaseAssistance'
+import checkout from '../../api/checkout'
 
 export default function Cart() {
   const [totalPrice, setTotalPrice] = useState(0)
@@ -21,6 +22,7 @@ export default function Cart() {
   //取得購物車中產品的 id 陣列
   const keys = Object.keys(cart);
 
+  let product: { price: string, quantity: number }[] = [];
 
   // 在需要時更新 totalPrice
   useEffect(() => {
@@ -69,6 +71,9 @@ export default function Cart() {
           // 如果產品的總數量大於 0，且找到了對應的產品資料
           if (cart[id].total > 0 && foundProduct) {
             if ('noColor' in otherProps) {
+              // 將產品的stripeKey與數量push到product中，在cashout時使用
+              //price與quantity為stripe checkout必要的的key名稱
+              product.push({ price: foundProduct.stripeKey as string, quantity: total })
               // 產品沒有顏色選項，顯示產品名稱及總數量
               return (
                 <div key={id}>
@@ -116,7 +121,11 @@ export default function Cart() {
               // 產品有顏色選項，顯示每個顏色選項的名稱及數量
               const colorOptions = Object.entries(cart[id]).filter(([key, value]) => key !== 'total');
               return colorOptions.map(([color, count]) => {
-                console.log('f', foundProduct.src[color])
+                // 將產品的stripeKey與數量push到product中，在cashout時使用
+                //price與quantity為stripe checkout必要的的key名稱
+                const stripeKey = foundProduct.stripeKey as { [key: string]: string };
+                product.push({ price: stripeKey[color], quantity: count });
+
                 return (
                   <div key={color} className="pb-24 mb-24 border-b border-[#d2d2d7]">
                     <div className='w-full flex flex-row'>
@@ -187,9 +196,12 @@ export default function Cart() {
   }
 
   const CashOut = () => {
+
     return (
       <div className='w-9/12 flex justify-end ml-auto'>
-        <button className="w-1/2 inline-block mt-12 px-12 py-6 rounded-xl cursor-pointer text-center whitespace-no-wrap text-2xl font-normal bg-[#0071e3] hover:bg-[#0077ed] text-white  ">結帳</button>
+        <button
+          onClick={() => { checkout(product) }}
+          className="w-1/2 inline-block mt-12 px-12 py-6 rounded-xl cursor-pointer text-center whitespace-no-wrap text-2xl font-normal bg-[#0071e3] hover:bg-[#0077ed] text-white  ">結帳</button>
       </div>
     )
   }
