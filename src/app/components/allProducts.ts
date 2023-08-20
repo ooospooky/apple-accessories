@@ -7,6 +7,7 @@ export interface IProduct {
   coverImage: string;
   src: { [key: string]: string[] };
   price: number;
+  stripeKey: string | { [key: string]: string };
   colorsType?: null | string[];
   colors?: null | string[];
   productInfo?: string[];
@@ -45,6 +46,7 @@ export const allProducts: IProduct[] = [
         "/mac/poweradapter/MNWM3_AV2.png",
       ],
     },
+    stripeKey: "price_1Nh512BVL9eNTS8OHObDFaru",
     price: 1690,
     colorsType: null,
     colors: null,
@@ -63,6 +65,7 @@ export const allProducts: IProduct[] = [
     height: 465,
     coverImage: "/mac/studioDisplay/MK0U3_FV404.png",
     src: { noColor: ["/mac/studioDisplay/MK0U3_FV404.png"] },
+    stripeKey: "price_1Nh53KBVL9eNTS8ObHdeOdGK",
     price: 45900,
   },
   {
@@ -83,6 +86,10 @@ export const allProducts: IProduct[] = [
         "/mac/keyboard/white/MK2C3TA_AV1.png",
         "/mac/keyboard/white/MK2C3TA_AV2.png",
       ],
+    },
+    stripeKey: {
+      黑色按鍵: "price_1Nh55XBVL9eNTS8OHPWl4Z3Y",
+      白色按鍵: "price_1Nh56xBVL9eNTS8OSr61L6pv",
     },
     price: 5890,
     colorsType: ["黑色按鍵", "白色按鍵"],
@@ -112,6 +119,10 @@ export const allProducts: IProduct[] = [
         "/mac/trackpad/white/MK2D3_AV1.png",
         "/mac/trackpad/white/MK2D3_AV2.png",
       ],
+    },
+    stripeKey: {
+      黑色多點觸控表面: "price_1Nh59LBVL9eNTS8OchstdF0i",
+      白色多點觸控表面: "price_1Nh5ANBVL9eNTS8OfIqAfIZN",
     },
     price: 4390,
     colorsType: ["黑色多點觸控表面", "白色多點觸控表面"],
@@ -143,6 +154,10 @@ export const allProducts: IProduct[] = [
         "/mac/mouse/white/MK2E3_AV2.png",
       ],
     },
+    stripeKey: {
+      黑色多點觸控表面: "price_1Nh5CVBVL9eNTS8OTwsayHye",
+      白色多點觸控表面: "price_1Nh5DSBVL9eNTS8ObXMckoul",
+    },
     price: 2790,
     colorsType: ["黑色多點觸控表面", "白色多點觸控表面"],
     colors: ["bg-black", "bg-gray-200"],
@@ -170,6 +185,7 @@ export const allProducts: IProduct[] = [
         "/ipad/applePencil1st/MK0C2_AV2.jpeg",
       ],
     },
+    stripeKey: "price_1Nh5YZBVL9eNTS8OthdDEJfE",
     price: 3290,
     productInfo: formatArray([
       `Apple Pencil 大大擴展了 iPad 的威力，為創意的無限可能開啟全新境界。它能靈敏感應筆尖的壓力與傾斜角度，你可以輕易控制線條粗細、刻畫細緻陰影，進而產生一系列藝術效果。就像使用傳統鉛筆一樣自然，卻又達到像素等級的精準度。`,
@@ -204,6 +220,7 @@ Lightning 連接器
         "/ipad/twosideKeyboard/MQDP3TA_AV2.jpeg",
       ],
     },
+    stripeKey: "price_1Nh5bXBVL9eNTS8OwLMZE6Q4",
     price: 8790,
     productInfo: formatArray([
       `
@@ -235,6 +252,11 @@ Lightning 連接器
         "/ipad/folio/gray200/MQDQ3_AV2.jpeg",
       ],
     },
+    stripeKey: {
+      西瓜色: "price_1Nh5daBVL9eNTS8O4sY3wYRy",
+      晴空色: "price_1Nh5eWBVL9eNTS8OWgLjPGyY",
+      白色: "price_1Nh5fRBVL9eNTS8OQ37iqNJM",
+    },
     price: 2590,
     colorsType: ["西瓜色", "晴空色", "白色"],
     colors: ["bg-rose-500", "bg-blue-500", "bg-gray-200"],
@@ -262,6 +284,10 @@ Lightning 連接器
         "/ipad/keyboard/gray200/MJQL3TA_AV1.jpeg",
         "/ipad/keyboard/gray200/MJQK3TA_AV2.png",
       ],
+    },
+    stripeKey: {
+      黑色: "price_1Nh5gkBVL9eNTS8OihtHSXTf",
+      白色: "price_1Nh5hYBVL9eNTS8O24oETYta",
     },
     price: 11690,
     colorsType: ["黑色", "白色"],
@@ -298,6 +324,7 @@ USB-C 埠可用於為 iPad Pro 充電 ，讓你能騰出 iPad 上的連接埠用
         "/ipad/applePencil2nd/MU8F2_AV1.jpeg",
       ],
     },
+    stripeKey: "price_1Nh5imBVL9eNTS8OUdGxfczI",
     price: 4390,
     productInfo: formatArray([
       `Apple Pencil (第 2 代) 提供像素等級的精準度，與領先業界的低延遲時間，用來繪畫、塗鴉、著色、做筆記，或在 PDF 上做標示等，再合適不過。一上手，就像使用鉛筆一樣輕鬆自然。
@@ -345,6 +372,11 @@ USB-C 埠可用於為 iPad Pro 充電 ，讓你能騰出 iPad 上的連接埠用
       ],
     },
     price: 1790,
+    stripeKey: {
+      墨水色: "price_1Nh46QBVL9eNTS8ODGRFBkfS",
+      赭紅色: "price_1Nh47oBVL9eNTS8OFF4nJ6CG",
+      森林綠色: "price_1Nh5khBVL9eNTS8OYVkrxsjh",
+    },
     colorsType: ["墨水色", "赭紅色", "森林綠色"],
     colors: ["bg-stone-700", "bg-orange-900", "bg-green-950"],
     productInfo: formatArray([
@@ -388,6 +420,11 @@ USB-C 埠可用於為 iPad Pro 充電 ，讓你能騰出 iPad 上的連接埠用
         "/iphone/iPhone14ProSiliconeCasewithMagSafe/blue500/MQUJ3_AV5.jpeg",
       ],
     },
+    stripeKey: {
+      金絲雀黃色: "price_1Nh5mOBVL9eNTS8OaIrCiRIi",
+      橄欖色: "price_1Nh5nJBVL9eNTS8OqtKBShQ1",
+      晴空色: "price_1Nh5o7BVL9eNTS8OaoM9e5ly",
+    },
     price: 1490,
     colorsType: ["金絲雀黃色", "橄欖色", "晴空色"],
     colors: ["bg-yellow-300", "bg-zinc-700", "bg-blue-500"],
@@ -430,6 +467,11 @@ USB-C 埠可用於為 iPad Pro 充電 ，讓你能騰出 iPad 上的連接埠用
         "/iphone/iPhoneLeatherWalletwithMagSafe/stone700/MM0Y3_AV4.png",
       ],
     },
+    stripeKey: {
+      橙色: "price_1Nh5poBVL9eNTS8OS80khd7X",
+      赭紅色: "price_1Nh5qSBVL9eNTS8OPsGDezZC",
+      墨水色: "price_1Nh5r5BVL9eNTS8OkPswGurR",
+    },
     price: 1790,
     colorsType: ["橙色", "赭紅色", "墨水色"],
     colors: ["bg-orange-500", "bg-orange-900", "bg-stone-700"],
@@ -459,6 +501,7 @@ iPhone MagSafe 皮革卡套`,
         "/iphone/airPodsPro2nd/MQD83_AV5.jpeg",
       ],
     },
+    stripeKey: "price_1Nh5stBVL9eNTS8ODu01jvsc",
     price: 7490,
     productInfo: formatArray([
       `
@@ -614,6 +657,7 @@ Lightning 對 USB-C 連接線
         "/iphone/iPhone14ClearCasewithMagSafe/MPU13_AV6.jpeg",
       ],
     },
+    stripeKey: "price_1Nh5uRBVL9eNTS8O3JPVdBVe",
     price: 1490,
     productInfo: formatArray([
       `
@@ -647,6 +691,10 @@ Lightning 對 USB-C 連接線
         "/watch/soloLoop/lime400/MQX53ref_AV1.jpeg",
         "/watch/soloLoop/lime400/MQX53ref_AV2.jpeg",
       ],
+    },
+    stripeKey: {
+      橄欖色: "price_1Nh60jBVL9eNTS8O2TXKYrVq",
+      芽綠色: "price_1Nh61lBVL9eNTS8Ovctz65JF",
     },
     price: 1600,
     colorsType: ["橄欖色", "芽綠色"],
@@ -683,6 +731,11 @@ Lightning 對 USB-C 連接線
         "/watch/sportBand/orange400/MR2R3ref_AV2.png",
       ],
     },
+    stripeKey: {
+      晴空色: "price_1Nh664BVL9eNTS8O3JdeGqnA",
+      橄欖色: "price_1Nh67MBVL9eNTS8Orcu5p9Jg",
+      鮮橙色: "price_1Nh68EBVL9eNTS8OmL4eN7oH",
+    },
     price: 1600,
     colorsType: ["晴空色", "橄欖色", "鮮橙色"],
     colors: ["bg-blue-500", "bg-zinc-700", "bg-orange-400"],
@@ -716,6 +769,11 @@ Lightning 對 USB-C 連接線
         "/watch/brandsoloLoop/zinc700/MQYX3ref_AV1.png",
         "/watch/brandsoloLoop/zinc700/MQYX3ref_AV2.png",
       ],
+    },
+    stripeKey: {
+      鮮橙色: "price_1Nh6AnBVL9eNTS8OaPGr54Vi",
+      霧紫色: "price_1Nh6fHBVL9eNTS8OcGPceYgX",
+      橄欖色: "price_1Nh6JsBVL9eNTS8OFXY4ObWd",
     },
     price: 3100,
     colorsType: ["鮮橙色", "霧紫色", "橄欖色"],
@@ -751,6 +809,11 @@ Lightning 對 USB-C 連接線
         "/watch/sportLoop/yellow200/MPLE3_AV2.png",
       ],
     },
+    stripeKey: {
+      午夜色: "price_1Nh6NhBVL9eNTS8OroY7TBMO",
+      風暴藍色: "price_1Nh6OmBVL9eNTS8O5uqj5Z8v",
+      星光色: "price_1Nh6PeBVL9eNTS8OVnh1Ldvs",
+    },
     price: 1600,
     colorsType: ["午夜色", "風暴藍色", "星光色"],
     colors: ["bg-zinc-700", "bg-blue-900", "bg-yellow-200"],
@@ -784,6 +847,11 @@ Lightning 對 USB-C 連接線
         "/watch/milaneseLoop/zinc700/ML773_AV1.png",
         "/watch/milaneseLoop/zinc700/ML773_AV2.png",
       ],
+    },
+    stripeKey: {
+      金色: "price_1Nh6RlBVL9eNTS8O5nbpcTkj",
+      銀色: "price_1Nh6SZBVL9eNTS8OCt7ouLQP",
+      橄欖色: "price_1Nh6TGBVL9eNTS8OloB5u572",
     },
     price: 3100,
     colorsType: ["金色", "銀色", "橄欖色"],
