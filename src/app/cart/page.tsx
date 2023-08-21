@@ -74,7 +74,9 @@ export default function Cart() {
         <h1 className='block text-6xl font-semibold'>以下是你購物袋內的商品 {getFormattedPrice(totalPrice)}。</h1>
         <span className='block text-2xl font-normal pt-10'>所有訂單均享免額外付費運送服務。</span>
         <div className='mt-12 w-1/3 m-auto' >
-          <AddToCartBtn btnText="結帳" />
+          <button
+            onClick={() => handleCashout()}
+            className="w-full inline-block mt-12 px-12 py-6 rounded-xl cursor-pointer text-center whitespace-no-wrap text-2xl font-normal bg-[#0071e3] hover:bg-[#0077ed] text-white  "> {isLoading ? <LoadingSvg /> : '結帳'}</button>
         </div>
       </div>
     )
