@@ -260,9 +260,11 @@ export default function Cart() {
 
     return (
       <div className='w-9/12 flex justify-end ml-auto'>
+
         <button
           onClick={() => handleCashout()}
           className="w-1/2 inline-block mt-12 px-12 py-6 rounded-xl cursor-pointer text-center whitespace-no-wrap text-2xl font-normal bg-[#0071e3] hover:bg-[#0077ed] text-white  "> {isLoading ? <LoadingSvg /> : '結帳'}</button>
+
       </div>
     )
   }
@@ -307,6 +309,7 @@ export default function Cart() {
       <RenderProduct />
       <Summary />
       <CashOut />
+      <p className='text-right text-2xl pt-5 '> Use test card 4242 4242 4242 4242 to simulate a payment, other fields can be entered freely</p>
       <Assistance />
     </div>
   )
