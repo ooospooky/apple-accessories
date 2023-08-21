@@ -16,7 +16,7 @@ export const Carousel: React.FC<CarouselPorps> = ({ src, selectedColor }) => {
   const renderCarouselImages = (images: string[]) => (
     <>
       <div key={currentIndex} className='animate-fade animate-once animate-duration-[500ms]'>
-        <Image src={images[currentIndex]} layout="responsive" height={1} width={1} alt='' className='object-fill m-auto max-w-5xl max-h-5xl' />
+        <Image src={images[currentIndex]} height={550} width={550} alt='' className='object-fill m-auto max-w-5xl max-h-5xl w-[300px] h-[300px] sm:w-[550px] sm:h-[550px]' />
       </div>
       <div className='w-full flex flex-row justify-center items-center'>
         {images.map((image, index) => (
