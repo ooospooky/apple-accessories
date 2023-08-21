@@ -95,7 +95,7 @@ export default function Cart() {
     return (
       <div key={id}>
         <div className="pb-24 mb-24 border-b border-[#d2d2d7]">
-          <div className='w-full flex flex-row'>
+          <div className='w-full flex flex-col md:flex-row'>
             <div className='basis-1/4' >
               <Image src={foundProduct.src['noColor'][0]} alt='' height={400} width={400} />
             </div>
@@ -143,9 +143,11 @@ export default function Cart() {
   const ColorOptionProduct: React.FC<ColorOptionProductProps> = ({ color, count, foundProduct, id, handleProductCountChange }) => {
     return (
       <div key={color} className="pb-24 mb-24 border-b border-[#d2d2d7]">
-        <div className='w-full flex flex-row'>
-          <div className='basis-1/4' >
-            <Image src={foundProduct.src[color][0]} alt='' height={400} width={400} />
+        <div className='w-full flex flex-col md:flex-row'>
+          <div className='mx-auto md:basis-1/4' >
+            <Image src={foundProduct.src[color][0]} alt='' height={400} width={400}
+              className='w-[200px] h-[200px] md:w-[300px] md:h-[300px]'
+            />
           </div>
           <div className='basis-3/4'>
             <div className='h-full flex flex-col justify-center '>
@@ -304,7 +306,7 @@ export default function Cart() {
   )
 
   return (
-    <div className='h-full w-8/12 m-auto my-20'>
+    <div className='h-full  w-11/12 lg:w-8/12 m-auto my-20'>
       <CartHeader />
       <RenderProduct />
       <Summary />
