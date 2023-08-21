@@ -1,15 +1,19 @@
 "use client"
 import Link from "next/link";
-import React, { use, useEffect } from "react";
+import React, { useEffect } from "react";
 import { shootFireworks } from '../../lib/utils'
 
 const Success = () => {
+  //只在初次render時呈現firework animation
   useEffect(() => {
     shootFireworks();
   }, [])
+
   return (
     <div className=" h-screen w-full ">
       <div className="bg-white p-6  md:mx-auto mt-16">
+
+        {/* 成功svg */}
         <svg
           viewBox="0 0 24 24"
           className="text-green-600 w-36 h-36 mx-auto my-6"
