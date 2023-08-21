@@ -69,7 +69,7 @@ export const Footer = () => {
           </ul>
         </div>
       </div>
-      <div className="w-8/12   max-w-screen-xl pb-3 md:flex md:items-center  md:m-auto md:justify-between">
+      <div className="w-8/12   max-w-screen-xl pb-3 md:flex md:items-center  m-auto md:justify-between">
         <span className="text-sm text-[#6e6e73] sm:text-center ">Copyright © 2023 Apple Inc. 保留一切權利。</span>
         <ul className="flex flex-wrap items-center mt-8 text-sm font-medium text-gray-500 dark:text-gray-400 md:mt-0">
           <li>
