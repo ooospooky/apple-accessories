@@ -17,7 +17,7 @@ export const Navbar = () => {
 
   return (
     <nav className="bg-white border-gray-200">
-      <div className="max-w-screen-xl w-6/12 flex flex-wrap justify-evenly items-center mx-auto py-4 ">
+      <div className="max-w-screen-xl w-10/12 md:w-6/12 flex flex-wrap justify-evenly items-center mx-auto py-4 ">
         <Link href="/" className="flex items-center md:grow-0 grow">
           <Image src='/svg/appleLogo.svg' priority width={14} height={44} alt="appleLogo" />
         </Link>
