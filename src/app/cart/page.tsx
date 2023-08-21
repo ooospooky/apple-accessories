@@ -40,15 +40,19 @@ export default function Cart() {
     setTotalPrice(calculateTotalPrice());
   }, [cart, keys]);
 
+  //更改商品數量邏輯
   const handleProductCountChange = (event: ChangeEvent<HTMLSelectElement> | ChangeEvent<HTMLInputElement>, id: string, color: string) => {
     const count = Number(event.target.value)
+    //若用戶輸入數量小於1，只顯示最小值1
     const number: number = count < 1 ? 1 : count;
+    //更動redux狀態
     dispatch(changeProductCount({ id: id, color: color, number: number }))
 
   };
   //使用 useRouter() 以此使用router.back()回到上一頁
   const router = useRouter()
 
+  //按下結帳按鈕後顯示loadingSvg，使用setTimeout來避免UI loadingSvg不立即更新
   const handleCashout = () => {
     setIsLoading(true)
     setTimeout(() => {
