@@ -4,10 +4,10 @@ import { ProductList } from '../components/ProductList'
 export default function Mac() {
   return (
     <div className='w-full'>
-      <div className='headblock w-full h-full flex flex-row bg-[#f5f5f7] pl-80'  >
-        <div className="info basis-1/2 flex flex-col justify-center items-center  gap-12" >
+      <div className='headblock w-full h-full flex flex-col md:flex-row bg-[#f5f5f7] lg:pl-20 xl:pl-80'  >
+        <div className="info basis-1/2 py-10 flex flex-col justify-center items-center  gap-12" >
           <h2 className="text-7xl font-semibold mx-1 leading-tight">春暖⁠映新色。</h2>
-          <p className='text-3xl '>保護殼、卡套、無線充電器，或行動電源，全都可貼合。</p>
+          <p className='text-3xl '>選購最新款錶帶</p>
         </div>
         <div className='basis-1/2 -ml-8 m-auto' >
           <Image className='' src="/watch/watch-home.png" alt="header image" height={680} width={1440} />

@@ -4,13 +4,13 @@ import { ProductList } from '../components/ProductList'
 export default function Mac() {
   return (
     <div className='w-full'>
-      <div className='headblock w-full h-full flex flex-row bg-[#f5f5f7] px-80'  >
+      <div className='headblock  w-full h-full flex flex-col md:flex-row bg-[#f5f5f7] xl:px-80 py-10'  >
         <div className="info basis-1/2 flex flex-col justify-center items-center  gap-12" >
-          <h2 className="text-7xl font-semibold mx-1 leading-tight">MagSafe。混‍搭，很⁠搭。</h2>
-          <p className='text-3xl '>保護殼、卡套、無線充電器，或行動電源，全都可貼合。</p>
+          <h2 className="text-5xl sm:text-7xl font-semibold mx-1 leading-tight">MagSafe。混‍搭，很⁠搭。</h2>
+          <p className='text-2xl sm:text-3xl'>保護殼、卡套、無線充電器，或行動電源，全都可貼合。</p>
         </div>
-        <div className='basis-1/2 -ml-8' >
-          <Image src="/iphone/iphone-home.jpeg" alt="Homepage-IMG" height={480} width={900} />
+        <div className='basis-1/2 xl:-ml-8' >
+          <Image src="/apple-homepageIMG.png" alt="Homepage-IMG" height={300} width={900} />
         </div>
       </div>
 
