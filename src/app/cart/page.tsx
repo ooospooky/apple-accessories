@@ -13,8 +13,10 @@ import { OrderTimeAndDate } from '../components/OrderTimeAndDate'
 import QuantityField from '../components/QuantityField'
 import { PurchaseAssistance } from '../components/PurchaseAssistance'
 import checkout from '../../api/checkout'
+import LoadingSvg from '@/app/components/loadingSvg';
 
 export default function Cart() {
+  const [isLoading, setIsLoading] = useState(false)
   const [totalPrice, setTotalPrice] = useState(0)
   const dispatch = useAppDispatch()
   //使用 useAppSelector 從 Redux store 中取得購物車狀態資料
@@ -46,6 +48,13 @@ export default function Cart() {
   };
   //使用 useRouter() 以此使用router.back()回到上一頁
   const router = useRouter()
+
+  const handleCashout = () => {
+    setIsLoading(true)
+    setTimeout(() => {
+      checkout(product)
+    }, 100)
+  }
 
   const CartHeader = () => {
     return (
@@ -200,8 +209,8 @@ export default function Cart() {
     return (
       <div className='w-9/12 flex justify-end ml-auto'>
         <button
-          onClick={() => { checkout(product) }}
-          className="w-1/2 inline-block mt-12 px-12 py-6 rounded-xl cursor-pointer text-center whitespace-no-wrap text-2xl font-normal bg-[#0071e3] hover:bg-[#0077ed] text-white  ">結帳</button>
+          onClick={() => handleCashout}
+          className="w-1/2 inline-block mt-12 px-12 py-6 rounded-xl cursor-pointer text-center whitespace-no-wrap text-2xl font-normal bg-[#0071e3] hover:bg-[#0077ed] text-white  "> {isLoading ? <LoadingSvg /> : '結帳'}</button>
       </div>
     )
   }
