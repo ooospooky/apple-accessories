@@ -17,13 +17,18 @@ import LoadingSvg from '@/app/components/loadingSvg';
 
 export default function Cart() {
   const [isLoading, setIsLoading] = useState(false)
+
+  //用來呈現總金額
   const [totalPrice, setTotalPrice] = useState(0)
   const dispatch = useAppDispatch()
+
   //使用 useAppSelector 從 Redux store 中取得購物車狀態資料
   const cart = useAppSelector((state) => state.cartSliceReducer.value)
+
   //取得購物車中產品的 id 陣列
   const keys = Object.keys(cart);
 
+  //創建product，計算要送入stripe的資料 [{price:stripeAPI,quantity,數量}]
   let product: { price: string, quantity: number }[] = [];
 
   // 在需要時更新 totalPrice
@@ -49,6 +54,7 @@ export default function Cart() {
     dispatch(changeProductCount({ id: id, color: color, number: number }))
 
   };
+
   //使用 useRouter() 以此使用router.back()回到上一頁
   const router = useRouter()
 
@@ -124,10 +130,6 @@ export default function Cart() {
                       </div>
                     </div>
                   </div>
-
-
-
-
                 </div>
               )
             } else {
@@ -176,7 +178,6 @@ export default function Cart() {
                   </div>
                 )
               });
-
             }
           }
         })}
@@ -204,7 +205,6 @@ export default function Cart() {
         </span>
         <span className="text-xl tracking-wide text-right mt-2 ">欲使用銀行轉帳付款，請致電 0800-020-021。</span>
       </div>
-
     )
   }
 
@@ -230,6 +230,8 @@ export default function Cart() {
       </div>
     )
   }
+
+  //購物車沒有商品時呈現其他畫面
   if (totalPrice <= 0) return (
     <div className='h-full w-8/12 m-auto my-20'>
       <div className="flex flex-col gap-12">
