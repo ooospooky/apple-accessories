@@ -283,8 +283,8 @@ export default function Cart() {
 
   //購物車沒有商品時呈現其他畫面
   if (totalPrice <= 0) return (
-    <div className='h-full w-8/12 m-auto my-20'>
-      <div className="flex flex-col gap-12">
+    <div className='h-full w-11/12 md:w-8/12 m-auto my-20'>
+      <div className="flex flex-col gap-12 items-center md:items-start">
         <h2 className='text-6xl font-semibold'>購物袋中沒有任何商品。</h2>
         <p className='text-3xl '>登入查看你已儲存的商品。或繼續選購。</p>
         <Link href="/" className="w-1/2 inline-block  px-12 py-6 rounded-xl cursor-pointer text-center whitespace-no-wrap text-2xl font-normal bg-[#e6e6e6] hover:bg-[#e4e3e3]  ">繼續購物</Link>
