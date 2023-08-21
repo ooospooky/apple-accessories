@@ -20,6 +20,8 @@ export default function Cart() {
 
   //用來呈現總金額
   const [totalPrice, setTotalPrice] = useState(0)
+
+  //調用redux action
   const dispatch = useAppDispatch()
 
   //使用 useAppSelector 從 Redux store 中取得購物車狀態資料
@@ -77,6 +79,104 @@ export default function Cart() {
       </div>
     )
   }
+
+  interface NoColorOptionProductProps {
+    total: number;
+    otherProps: { [color: string]: number }; // 根據需要調整類型
+    foundProduct: IProduct;
+    id: string;
+    handleProductCountChange: (event: ChangeEvent<HTMLSelectElement> | ChangeEvent<HTMLInputElement>, id: string, color: string) => void;
+  }
+
+  const NoColorOptionProduct: React.FC<NoColorOptionProductProps> = ({ total, otherProps, foundProduct, id, handleProductCountChange }) => {
+
+    return (
+      <div key={id}>
+        <div className="pb-24 mb-24 border-b border-[#d2d2d7]">
+          <div className='w-full flex flex-row'>
+            <div className='basis-1/4' >
+              <Image src={foundProduct.src['noColor'][0]} alt='' height={400} width={400} />
+            </div>
+            <div className='basis-3/4'>
+              <div className='h-full flex flex-col justify-center '>
+                <div className=" h-1/2 mb-auto mt-3 flex flex-row  text-4xl font-semibold">
+                  <div className="basis-6/12 pr-10">
+                    <Link className="hover:text-[#0071e3] " href={`/product/${foundProduct.id}`} > {foundProduct.name}  </Link>
+                  </div>
+                  <div className="basis-2/12">
+                    <QuantityField
+                      count={otherProps['noColor']}
+                      id={id}
+                      color={'noColor'}
+                      handleProductCountChange={handleProductCountChange}
+                    />
+                  </div>
+                  <div className="basis-4/12 flex flex-col items-end gap-5">
+                    {getFormattedPrice(foundProduct.price * otherProps['noColor'])}
+                    <button
+                      className="text-2xl text-[#4182c3] font-normal hover:underline"
+                      onClick={() => dispatch(deleteFromCart({ id: id, color: 'noColor' }))}>
+                      移除</button>
+                  </div>
+                </div>
+                <div className='h-1/2 pt-7 border-t border-[#d2d2d7]'>
+                  <OrderTimeAndDate flexDirection='flex-row' />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  interface ColorOptionProductProps {
+    color: string;
+    count: number;
+    foundProduct: IProduct;
+    id: string;
+    handleProductCountChange: (event: ChangeEvent<HTMLSelectElement> | ChangeEvent<HTMLInputElement>, id: string, color: string) => void;
+  }
+
+  const ColorOptionProduct: React.FC<ColorOptionProductProps> = ({ color, count, foundProduct, id, handleProductCountChange }) => {
+    return (
+      <div key={color} className="pb-24 mb-24 border-b border-[#d2d2d7]">
+        <div className='w-full flex flex-row'>
+          <div className='basis-1/4' >
+            <Image src={foundProduct.src[color][0]} alt='' height={400} width={400} />
+          </div>
+          <div className='basis-3/4'>
+            <div className='h-full flex flex-col justify-center '>
+              <div className=" h-1/2 mb-auto mt-3 flex flex-row  text-4xl font-semibold">
+                <div className="basis-6/12 pr-10">
+                  <Link className="hover:text-[#0071e3] " href={`/product/${foundProduct.id}`}> {foundProduct.name} - {color} </Link>
+                </div>
+                <div className="basis-2/12">
+                  <QuantityField
+                    count={count}
+                    id={id}
+                    color={color}
+                    handleProductCountChange={handleProductCountChange}
+                  />
+                </div>
+                <div className="basis-4/12 flex flex-col items-end gap-5">
+                  {getFormattedPrice(foundProduct.price * count)}
+                  <button
+                    className="text-2xl text-[#4182c3] font-normal hover:underline"
+                    onClick={() => dispatch(deleteFromCart({ id: id, color: color }))}>
+                    移除</button>
+                </div>
+              </div>
+              <div className='h-1/2 pt-7 border-t border-[#d2d2d7]'>
+                <OrderTimeAndDate flexDirection='flex-row' />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   const RenderProduct = () => {
     return (
       <div className='pt-24'>
@@ -95,42 +195,14 @@ export default function Cart() {
               product.push({ price: foundProduct.stripeKey as string, quantity: total })
               // 產品沒有顏色選項，顯示產品名稱及總數量
               return (
-                <div key={id}>
-                  <div className="pb-24 mb-24 border-b border-[#d2d2d7]">
-                    <div className='w-full flex flex-row'>
-                      <div className='basis-1/4' >
-                        <Image src={foundProduct.src['noColor'][0]} alt='' height={400} width={400} />
-                      </div>
-                      <div className='basis-3/4'>
-                        <div className='h-full flex flex-col justify-center '>
-                          <div className=" h-1/2 mb-auto mt-3 flex flex-row  text-4xl font-semibold">
-                            <div className="basis-6/12 pr-10">
-                              <Link className="hover:text-[#0071e3] " href={`/product/${foundProduct.id}`} > {foundProduct.name}  </Link>
-                            </div>
-                            <div className="basis-2/12">
-                              <QuantityField
-                                count={otherProps['noColor']}
-                                id={id}
-                                color={'noColor'}
-                                handleProductCountChange={handleProductCountChange}
-                              />
-                            </div>
-                            <div className="basis-4/12 flex flex-col items-end gap-5">
-                              {getFormattedPrice(foundProduct.price * otherProps['noColor'])}
-                              <button
-                                className="text-2xl text-[#4182c3] font-normal hover:underline"
-                                onClick={() => dispatch(deleteFromCart({ id: id, color: 'noColor' }))}>
-                                移除</button>
-                            </div>
-                          </div>
-                          <div className='h-1/2 pt-7 border-t border-[#d2d2d7]'>
-                            <OrderTimeAndDate flexDirection='flex-row' />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <NoColorOptionProduct
+                  key={id}
+                  total={total}
+                  otherProps={otherProps}
+                  foundProduct={foundProduct}
+                  id={id}
+                  handleProductCountChange={handleProductCountChange}
+                />
               )
             } else {
               // 產品有顏色選項，顯示每個顏色選項的名稱及數量
@@ -142,40 +214,14 @@ export default function Cart() {
                 product.push({ price: stripeKey[color], quantity: count });
 
                 return (
-                  <div key={color} className="pb-24 mb-24 border-b border-[#d2d2d7]">
-                    <div className='w-full flex flex-row'>
-                      <div className='basis-1/4' >
-                        <Image src={foundProduct.src[color][0]} alt='' height={400} width={400} />
-                      </div>
-                      <div className='basis-3/4'>
-                        <div className='h-full flex flex-col justify-center '>
-                          <div className=" h-1/2 mb-auto mt-3 flex flex-row  text-4xl font-semibold">
-                            <div className="basis-6/12 pr-10">
-                              <Link className="hover:text-[#0071e3] " href={`/product/${foundProduct.id}`}> {foundProduct.name} - {color} </Link>
-                            </div>
-                            <div className="basis-2/12">
-                              <QuantityField
-                                count={count}
-                                id={id}
-                                color={color}
-                                handleProductCountChange={handleProductCountChange}
-                              />
-                            </div>
-                            <div className="basis-4/12 flex flex-col items-end gap-5">
-                              {getFormattedPrice(foundProduct.price * count)}
-                              <button
-                                className="text-2xl text-[#4182c3] font-normal hover:underline"
-                                onClick={() => dispatch(deleteFromCart({ id: id, color: color }))}>
-                                移除</button>
-                            </div>
-                          </div>
-                          <div className='h-1/2 pt-7 border-t border-[#d2d2d7]'>
-                            <OrderTimeAndDate flexDirection='flex-row' />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  <ColorOptionProduct
+                    key={color}
+                    color={color}
+                    count={count}
+                    foundProduct={foundProduct}
+                    id={id}
+                    handleProductCountChange={handleProductCountChange}
+                  />
                 )
               });
             }
@@ -213,7 +259,7 @@ export default function Cart() {
     return (
       <div className='w-9/12 flex justify-end ml-auto'>
         <button
-          onClick={() => handleCashout}
+          onClick={() => handleCashout()}
           className="w-1/2 inline-block mt-12 px-12 py-6 rounded-xl cursor-pointer text-center whitespace-no-wrap text-2xl font-normal bg-[#0071e3] hover:bg-[#0077ed] text-white  "> {isLoading ? <LoadingSvg /> : '結帳'}</button>
       </div>
     )
