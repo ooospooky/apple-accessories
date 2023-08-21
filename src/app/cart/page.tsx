@@ -71,7 +71,7 @@ export default function Cart() {
   const CartHeader = () => {
     return (
       <div className='w-full pb-16 border-b border-[#d2d2d7] text-center'>
-        <h1 className='block text-6xl font-semibold'>以下是你購物袋內的商品 {getFormattedPrice(totalPrice)}。</h1>
+        <h1 className='block text-5xl md:text-6xl tracking-normal leading-normal font-semibold'>以下是你購物袋內的商品 {getFormattedPrice(totalPrice)}。</h1>
         <span className='block text-2xl font-normal pt-10'>所有訂單均享免額外付費運送服務。</span>
         <div className='mt-12 w-1/3 m-auto' >
           <button
@@ -96,14 +96,15 @@ export default function Cart() {
       <div key={id}>
         <div className="pb-24 mb-24 border-b border-[#d2d2d7]">
           <div className='w-full flex flex-col md:flex-row'>
-            <div className='basis-1/4' >
-              <Image src={foundProduct.src['noColor'][0]} alt='' height={400} width={400} />
+            <div className='mx-auto md:basis-1/4' >
+              <Image src={foundProduct.src['noColor'][0]} alt='' height={400} width={400}
+                className='w-[200px] h-[200px] md:w-[300px] md:h-[300px]' />
             </div>
             <div className='basis-3/4'>
               <div className='h-full flex flex-col justify-center '>
-                <div className=" h-1/2 mb-auto mt-3 flex flex-row  text-4xl font-semibold">
+                <div className=" h-1/2  my-4 mt-3 flex flex-row text-3xl  md:text-4xl font-semibold">
                   <div className="basis-6/12 pr-10">
-                    <Link className="hover:text-[#0071e3] " href={`/product/${foundProduct.id}`} > {foundProduct.name}  </Link>
+                    <Link className="hover:text-[#0071e3] tracking-normal leading-normal" href={`/product/${foundProduct.id}`} > {foundProduct.name}  </Link>
                   </div>
                   <div className="basis-2/12">
                     <QuantityField
@@ -151,9 +152,9 @@ export default function Cart() {
           </div>
           <div className='basis-3/4'>
             <div className='h-full flex flex-col justify-center '>
-              <div className=" h-1/2 mb-auto mt-3 flex flex-row  text-4xl font-semibold">
+              <div className=" h-1/2  my-4 mt-3 flex flex-row text-3xl  md:text-4xl font-semibold">
                 <div className="basis-6/12 pr-10">
-                  <Link className="hover:text-[#0071e3] " href={`/product/${foundProduct.id}`}> {foundProduct.name} - {color} </Link>
+                  <Link className="hover:text-[#0071e3] tracking-normal leading-normal " href={`/product/${foundProduct.id}`}> {foundProduct.name} - {color} </Link>
                 </div>
                 <div className="basis-2/12">
                   <QuantityField
