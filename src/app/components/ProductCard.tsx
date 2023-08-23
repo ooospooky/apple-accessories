@@ -11,7 +11,7 @@ export const ProductCard: React.FC<IProduct> = ({ id, category, name, width, hei
   });
   return (
 
-    <li key={id} className={`bg-[#f2f2f2] list-none overflow-hidden rounded-3xl border-4 border-solid border-white  flex flex-col justify-end ${height === 465 ? "order-first basis-full sm:basis-2/3" : "basis-1/2 sm:basis-1/3"}`} >
+    <li key={id} className={`bg-[#f2f2f2] list-none overflow-hidden rounded-3xl border-4 border-solid border-white  flex flex-col justify-end ${height === 465 ? "order-first sm:order-none basis-full sm:basis-2/3" : "basis-1/2 sm:basis-1/3"}`} >
       <Link href={`/product/${id}`}>
         <div className="photo px-16 m-auto  ">
           <Image className="mx-auto mb-3.5 " src={coverImage} width={width} height={height} alt={name} />
