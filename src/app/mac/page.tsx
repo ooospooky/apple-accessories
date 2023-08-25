@@ -3,7 +3,7 @@ import Image from 'next/image'
 import type { Metadata } from 'next'
 import { ProductList } from '../components/ProductList'
 export const metadata: Metadata = {
-  title: 'Mac Store',
+  title: '購買 Mac 配件 - Apple(台灣)',
   description: 'Apple accessories store',
 }
 export default function Mac() {

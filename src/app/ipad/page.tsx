@@ -1,6 +1,14 @@
 import React from 'react'
+import type { Metadata } from 'next'
 import Image from 'next/image'
 import { ProductList } from '../components/ProductList'
+
+export const metadata: Metadata = {
+  title: '購買 iPad 配件 - Apple(台灣)',
+  description: 'Apple accessories store',
+}
+
+
 export default function Mac() {
   return (
     <div className='w-full'>

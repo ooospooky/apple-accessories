@@ -12,7 +12,7 @@ const roboto = Roboto({
 })
 
 export const metadata: Metadata = {
-  title: 'Apple Accessories',
+  title: 'Apple Accessories  - Apple(台灣)',
   description: 'Apple accessories store',
 }
 

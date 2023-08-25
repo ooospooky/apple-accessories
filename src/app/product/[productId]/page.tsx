@@ -16,6 +16,7 @@ import { addToCart } from '@/redux/features/cartSlice';
 import loading from '../../../../public/svg/loading.svg';
 import LoadingSvg from '@/app/components/loadingSvg';
 
+
 export default function ProductId({ params }: { params: { productId: string } }) {
   const [isLoading, setIsLoading] = useState(false);
   const [selectedColor, setSelectedColor] = useState<string | null>(null);
