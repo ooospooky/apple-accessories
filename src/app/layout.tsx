@@ -12,7 +12,7 @@ const roboto = Roboto({
 })
 
 export const metadata: Metadata = {
-  title: 'Apple Store',
+  title: 'Apple Accessories',
   description: 'Apple accessories store',
 }
 
@@ -23,7 +23,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-
+      <link rel="icon" href="/od-default.ico" sizes="any" />
       <body className={roboto.className}>
         <ReduxProvider>
           <Navbar />
