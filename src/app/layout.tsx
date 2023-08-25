@@ -23,7 +23,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <link rel="icon" href="/od-default.ico" sizes="any" />
+      <link rel="icon" href="/apple_logo_icon.ico" type="image/x-icon" sizes="any" />
       <body className={roboto.className}>
         <ReduxProvider>
           <Navbar />
