@@ -1,5 +1,5 @@
 "use client"
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -16,16 +16,7 @@ const SliderComponent = () => {
     { type: "watch", title: "Apple Watch 錶帶", linkName: '錶帶' },
   ];
 
-
   const sliderRef = useRef<Slider | null>(null); //用來調用prev, next按鈕
-
-  const handleNext = () => {
-    sliderRef.current!.slickNext(); //使用！ 確保 ref 不為 null
-  };
-  const handlePrev = () => {
-    sliderRef.current!.slickPrev(); //使用！ 確保 ref 不為 null
-  };
-
 
   const settings = {
     dots: true, //顯示slider下方的dot
@@ -56,27 +47,25 @@ const SliderComponent = () => {
         }
       }
     ]
-
   };
 
   return (
     <div id="container" className="w-full">
-      {/* <SliderBtn itemsToShow={itemsToShow} handleNext={handleNext} handlePrev={handlePrev} /> */}
       {productsCategory.map(({ type, title, linkName }) => {
         return (
-          <>
+          <div key={title}>
             <h2 className='text-6xl text-black text-center font-semibold pb-10'>{title}</h2 >
             <Slider {...settings} ref={sliderRef}>
-
               {allProducts.map((product) => (
                 product.category === type ? <SliderCard key={product.id} {...product} /> : null
               ))}
-
             </Slider>
             <div className="w-full text-center pt-20 pb-40">
-              <Link href={`/${type}`} className="text-2xl text-[#06c] text-center">選購所有 {linkName} &gt;</Link>
+              <Link href={`/${type}`} className="text-2xl text-[#06c] text-center">
+                選購所有 {linkName} &gt;
+              </Link>
             </div>
-          </>
+          </div>
         )
       })}
     </div >

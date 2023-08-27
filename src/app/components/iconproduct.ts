@@ -1,6 +1,12 @@
 import React from "react";
 
-export const iconProduct = [
+export interface IiconProduct {
+  product: string;
+  src: string;
+  alt: string;
+}
+
+export const iconProduct: IiconProduct[] = [
   { product: "Mac", src: "/icon-product-mac.png", alt: "mac" },
   { product: "iPad", src: "/icon-product-ipad.png", alt: "ipad" },
   { product: "iPhone", src: "/icon-product-iphone.png", alt: "iphone" },
