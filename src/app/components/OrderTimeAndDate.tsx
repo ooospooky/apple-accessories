@@ -8,7 +8,6 @@ interface IorderTimeAndDate {
 
 export const OrderTimeAndDate: React.FC<IorderTimeAndDate> = ({ flexDirection }) => {
   return (
-    // <>
     <div className={`flex ${flexDirection} gap-10`}>
       <div className={`flex flex-row gap-1  ${flexDirection === 'flex-row' ? 'w-1/2' : ''}`}>
         <Image src="/svg/appleBag.svg" priority width={25} height={25} alt="appleBag" className='mr-3' />
@@ -25,6 +24,5 @@ export const OrderTimeAndDate: React.FC<IorderTimeAndDate> = ({ flexDirection })
         </div>
       </div>
     </div>
-    // </>
   )
 }
