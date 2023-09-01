@@ -1,12 +1,14 @@
 ## Apple Accessories Clone
 
-<a href="https://apple-accessories.vercel.app/">Check Out My Project!</a> Use below test cards to simulate a payment, other fields can be entered freely
+<a href="https://apple-accessories.vercel.app/">Check Out My Project!</a> 
+
+Use below test cards to simulate a payment, other fields can be entered freely
 
 ```
 4242 4242 4242 4242
 ```
 
-This project is a clone of Apple Accessories webpage, built using React, Next.js, Tailwind CSS, and Redux. It includes a homepage with a carousel using React Slick and category pages like Mac, and iPhone, etc. Users can navigate to product details, choose colors, and add items to their shopping cart.
+This project is a clone of Apple Accessories webpage, built using React, Next.js, Tailwind CSS, and Redux. It includes a homepage with a carousel using React Slick and category pages like Mac, iPhone, etc. Users can navigate to product details, choose colors, and add items to their shopping cart.
 
 ## Technologies Used
 
@@ -26,8 +28,9 @@ This project is actively under development, and the pipeline has several excitin
 ### Planned Features
 
 - - [x] Integration of a test environment financial payment API to simulate a comprehensive shopping cart experience.
+- - [x] Optimization for mobile devices to ensure a seamless browsing experience on smaller screens.
 - Implementation of user authentication to enable members to access their order history.
-- Optimization for mobile devices to ensure a seamless browsing experience on smaller screens.
+
 
 ### Continuous Enhancements and Improvements
 
