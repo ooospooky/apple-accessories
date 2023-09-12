@@ -7,8 +7,11 @@ Use below test cards to simulate a payment, other fields can be entered freely
 ```
 4242 4242 4242 4242
 ```
+This project is a clone of Apple Accessories webpage, developed using a modern tech stack consisting of **React, Next.js, and TypeScript**. The user interface is styled with the sleek and responsive **Tailwind CSS** framework. State management is handled effortlessly with **Redux**.
 
-This project is a clone of Apple Accessories webpage, built using React, Next.js, Tailwind CSS, and Redux. It includes a homepage with a carousel using React Slick and category pages like Mac, iPhone, etc. Users can navigate to product details, choose colors, and add items to their shopping cart.
+The project features a homepage showcasing an image carousel powered by React Slick. Additionally, it offers dedicated category pages, such as Mac, iPhone, and more, where users can explore a wide range of Apple accessories.
+
+Users can dive into product details, choose from various color options, and add items to their shopping cart. **To mimic the shopping experience, a test card (4242 4242 4242 4242) is available for simulating payments securely.**
 
 ## Technologies Used
 
@@ -21,22 +24,6 @@ This project is a clone of Apple Accessories webpage, built using React, Next.js
 - Vercel
 - Stripe payment
 
-## Future Development
-
-This project is actively under development, and the pipeline has several exciting features and improvements. Here's a glimpse of what you can expect in future updates:
-
-### Planned Features
-
-- - [x] Integration of a test environment financial payment API to simulate a comprehensive shopping cart experience.
-- - [x] Optimization for mobile devices to ensure a seamless browsing experience on smaller screens.
-- Implementation of user authentication to enable members to access their order history.
-
-
-### Continuous Enhancements and Improvements
-
-- UI/UX enhancements to provide a better user experience.
-- Performance optimizations to ensure quick loading times and smooth interactions.
-- Code refactoring for better maintainability and scalability.
 
 ## Screenshots
 
