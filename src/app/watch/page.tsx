@@ -16,8 +16,10 @@ const Headblock = () => (
     </div>
     <div className='basis-1/2 -ml-8 m-auto' >
       <Image
+        priority={true}
         src="/watch/watch-home.png"
         alt="header image"
+        layout="responsive"
         height={680}
         width={1440} />
 

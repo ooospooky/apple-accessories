@@ -17,8 +17,10 @@ const Headblock = () => (
     </div>
     <div className='basis-1/2 xl:-ml-28' >
       <Image
+        priority={true}
         src="/ipad/ipad-page.png"
         alt="Homepage-IMG"
+        layout="responsive"
         height={480}
         width={900} />
     </div>
