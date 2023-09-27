@@ -14,9 +14,11 @@ const HeaderBlock: React.FC = () => (
     </div>
     <div className='basis-1/2 xl:-ml-8'>
       <Image
+        priority={true}
         src="/apple-homepageIMG.png"
         alt="Homepage-IMG"
-        height={300}
+        layout="responsive"
+        height={400}
         width={900}
       />
     </div>
