@@ -13,9 +13,11 @@ jobs:
       uses: actions/checkout@v2
       with:
         token: ${{ secrets.PAT }}
+
     - name: Clone another repository
       run: |
         git clone https://github.com/ooospooky/apple-accessories.git /tmp/apple-accessories
+
     - name: Modify README, commit, and push
       run: |
         cd /tmp/apple-accessories
@@ -25,7 +27,7 @@ jobs:
         echo "This is a new line added by GitHub Actions!!" | cat - README.md > temp && mv temp README.md
         git add README.md
         git commit -m "feat: add text in readme"
-        git branch
+        
     - name: Push changes
       run: |
         git remote set-url origin https://x-access-token:${{ secrets.PAT }}@github.com/ooospooky/apple-accessories.git
