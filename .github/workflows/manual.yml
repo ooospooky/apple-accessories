@@ -16,6 +16,8 @@ jobs:
         git clone https://github.com/ooospooky/apple-accessories.git /tmp/apple-accessories
 
     - name: Modify README, commit, and push
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         cd /tmp/apple-accessories
         git config user.name "GitHub Actions Bot"
@@ -24,4 +26,4 @@ jobs:
         echo "This is a new line added by GitHub Actions" | cat - README.md > temp && mv temp README.md
         git add README.md
         git commit -m "feat: add text in readme"
-        git push origin test-text
+        git push https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/ooospooky/apple-accessories.git test-text
