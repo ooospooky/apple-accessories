@@ -5,13 +5,11 @@ on:
     # This allows manual triggering
 
 jobs:
-  test-clone:
-    runs-on: ubuntu-latest
+  run_tests:
+    runs-on: ubuntu-20.04
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-    
-    - name: List repository contents
+    - uses: actions/checkout@v2
+    - name: Run script file
       run: |
-        echo "Repository contents:"
-        ls -la
+         echo "test"
+      shell: bash
