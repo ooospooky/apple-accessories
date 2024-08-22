@@ -5,13 +5,23 @@ on:
     # This allows manual triggering
 
 jobs:
-  test-clone:
+  test-clone-and-modify:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
-    
-    - name: List repository contents
+
+    - name: Clone another repository
       run: |
-        echo "Repository contents:"
-        ls -la
+        git clone https://github.com/ooospooky/apple-accessories.git /tmp/apple-accessories
+
+    - name: Modify README, commit, and push
+      run: |
+        cd /tmp/apple-accessories
+        git config user.name "GitHub Actions Bot"
+        git config user.email "<>"
+        git checkout -b test-text
+        echo "This is a new line added by GitHub Actions" | cat - README.md > temp && mv temp README.md
+        git add README.md
+        git commit -m "feat: add text in readme"
+        git push origin test-text
