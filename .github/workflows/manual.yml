@@ -17,20 +17,18 @@ jobs:
       with:
         token: ${{secrets.PAT}}
 
-    # - name: Clone another repository
-    #   run: |
-    #     git clone https://github.com/ooospooky/apple-accessories.git /tmp/apple-accessories
+    - name: Clone another repository
+      run: |
+        git clone https://github.com/ooospooky/apple-accessories.git /tmp/apple-accessories
 
-    # # - name: Modify README, commit, and push
-    # #   env:
-    # #     TARGET_REPO_TOKEN: ${{ secrets.TARGET_REPO_TOKEN }}
-    # #   run: |
-    # #     cd /tmp/apple-accessories
-    # #     git config user.name "GitHub Actions Bot"
-    # #     git config user.email "github-actions[bot]@users.noreply.github.com"
-    # #     git checkout -b test-text
-    # #     cat README.md
-    # #     echo "This is a new line added by GitHub Actions!!" | cat - README.md > temp && mv temp README.md
-    # #     git add README.md
-    # #     git commit -m "feat: add text in readme"
-    # #     git push origin test-text
+    - name: Modify README, commit, and push
+      run: |
+        cd /tmp/apple-accessories
+        git config user.name "GitHub Actions Bot"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+        git checkout -b test-text
+        cat README.md
+        echo "This is a new line added by GitHub Actions!!" | cat - README.md > temp && mv temp README.md
+        git add README.md
+        git commit -m "feat: add text in readme"
+        git push origin test-text -f 
