@@ -1,0 +1,17 @@
+name: Test GitHub Actions
+
+on:
+  workflow_dispatch:
+    # This allows manual triggering
+
+jobs:
+  test-clone:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    
+    - name: List repository contents
+      run: |
+        echo "Repository contents:"
+        ls -la
