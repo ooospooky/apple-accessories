@@ -26,9 +26,10 @@ jobs:
         git checkout -b test-text
         echo "This is a new line added by GitHub Actions!!" | cat - README.md > temp && mv temp README.md
         git add README.md
-        git commit -m "feat: add text in readme"
-        
-    - name: Push changes
-      run: |
-        git remote set-url origin https://x-access-token:${{ secrets.PAT }}@github.com/ooospooky/apple-accessories.git
-        git push origin test-text
+        if git diff-index --quiet HEAD --; then
+          echo "No changes to commit"
+        else
+          git commit -m "feat: add text in readme"
+          git remote set-url origin https://x-access-token:${{ secrets.PAT }}@github.com/ooospooky/apple-accessories.git
+          git push origin test-text
+        fi
