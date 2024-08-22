@@ -31,7 +31,9 @@ jobs:
         git commit -m "feat: add text in readme"
         # git push https://x-access-token:${{ secrets.PAT }}@github.com/ooospooky/apple-accessories.git test-text
     - name: Push changes
-      uses: ad-m/github-push-action@v0.8.0
-      with:
-        github_token: ${{ secrets.PAT }}
-        branch: test-text
+      run: |
+       git push https://x-access-token:${{ secrets.PAT }}@github.com/ooospooky/apple-accessories.git test-text
+      # uses: ad-m/github-push-action@v0.8.0
+      # with:
+      #   github_token: ${{ secrets.PAT }}
+      #   branch: test-text
