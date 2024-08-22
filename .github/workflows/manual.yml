@@ -8,14 +8,10 @@ jobs:
   test-clone-and-modify:
     runs-on: ubuntu-latest
     steps:
-    - name: echo PAT
-      run: |
-        echo "PAT is : ${{secrets.PAT}}" 
-   
     - name: Checkout repository
       uses: actions/checkout@v2
       with:
-        token: ${{secrets.PAT}}
+        token: ${{ secrets.PAT }}
 
     - name: Clone another repository
       run: |
@@ -30,4 +26,4 @@ jobs:
         echo "This is a new line added by GitHub Actions!!" | cat - README.md > temp && mv temp README.md
         git add README.md
         git commit -m "feat: add text in readme"
-        git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/ooospooky/apple-accessories.git test-text
+        git push https://x-access-token:${{ secrets.PAT }}@github.com/ooospooky/apple-accessories.git test-text
