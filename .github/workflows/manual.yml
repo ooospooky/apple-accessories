@@ -33,7 +33,8 @@ jobs:
         
     - name: Push changes
       run: |
-        git push -u https://x-access-token:${{ secrets.PAT }}@github.com/ooospooky/apple-accessories.git test-text
+        git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
+        git push
       # uses: ad-m/github-push-action@v0.8.0
       # with:
       #   github_token: ${{ secrets.PAT }}
