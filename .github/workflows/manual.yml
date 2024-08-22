@@ -29,10 +29,11 @@ jobs:
         echo "This is a new line added by GitHub Actions!!" | cat - README.md > temp && mv temp README.md
         git add README.md
         git commit -m "feat: add text in readme"
-        # git push https://x-access-token:${{ secrets.PAT }}@github.com/ooospooky/apple-accessories.git test-text
+        git branch
+        
     - name: Push changes
       run: |
-       git push https://x-access-token:${{ secrets.PAT }}@github.com/ooospooky/apple-accessories.git test-text
+        git push https://x-access-token:${{ secrets.PAT }}@github.com/ooospooky/apple-accessories.git test-text
       # uses: ad-m/github-push-action@v0.8.0
       # with:
       #   github_token: ${{ secrets.PAT }}
