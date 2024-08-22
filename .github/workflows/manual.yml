@@ -7,6 +7,9 @@ on:
 jobs:
   test-clone-and-modify:
     runs-on: ubuntu-latest
+    permissions:               
+      contents: write          
+      pull-requests: write  
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
@@ -26,4 +29,9 @@ jobs:
         echo "This is a new line added by GitHub Actions!!" | cat - README.md > temp && mv temp README.md
         git add README.md
         git commit -m "feat: add text in readme"
-        git push https://x-access-token:${{ secrets.PAT }}@github.com/ooospooky/apple-accessories.git test-text
+        # git push https://x-access-token:${{ secrets.PAT }}@github.com/ooospooky/apple-accessories.git test-text
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: test-text
