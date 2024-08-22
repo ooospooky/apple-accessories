@@ -30,4 +30,4 @@ jobs:
         echo "This is a new line added by GitHub Actions!!" | cat - README.md > temp && mv temp README.md
         git add README.md
         git commit -m "feat: add text in readme"
-        git push
+        git push origin test-text -f
