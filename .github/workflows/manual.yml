@@ -1,7 +1,14 @@
 name: Test GitHub Actions
 on:
   workflow_dispatch:
-    # This allows manual triggering
+    inputs:
+      input1:
+        description: 'First input parameter'
+        required: true
+      input2:
+        description: 'Second input parameter'
+        required: true
+      # Add more inputs as needed
 jobs:
   test-clone-and-modify:
     runs-on: ubuntu-latest
