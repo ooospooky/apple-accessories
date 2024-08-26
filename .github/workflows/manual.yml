@@ -8,18 +8,34 @@ on:
       input2:
         description: 'Second input parameter'
         required: true
-      # Add more inputs as needed
+      image_path:
+        description: 'Path to the local image file'
+        required: true
+
 jobs:
   test-clone-and-modify:
     runs-on: ubuntu-latest
-    # permissions:               
-    #   contents: write          
-    #   pull-requests: write  
+    permissions:               
+      contents: write          
+      pull-requests: write  
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
       with:
         token: ${{ secrets.PAT }}
+
+    - name: Upload local image
+      id: upload-image
+      uses: actions/upload-artifact@v2
+      with:
+        name: user-image
+        path: ${{ github.event.inputs.image_path }}
+
+    - name: Download uploaded image
+      uses: actions/download-artifact@v2
+      with:
+        name: user-image
+        path: downloaded-image
 
     - name: Clone another repository
       run: |
@@ -32,6 +48,9 @@ jobs:
         git config user.email "github-actions[bot]@users.noreply.github.com"
         git checkout -b test-text
         echo "This is a new line added by GitHub Actions!!" | cat - README.md > temp && mv temp README.md
+        # Here you can use the downloaded image
+        # For example, you could copy it to the repository:
+        cp $GITHUB_WORKSPACE/downloaded-image/* .
         git add README.md
         if git diff-index --quiet HEAD --; then
           echo "No changes to commit"
