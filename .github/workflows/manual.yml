@@ -14,12 +14,26 @@ jobs:
       with:
         token: ${{ secrets.PAT }}
 
+    - name: Upload local image
+      uses: actions/upload-artifact@v2
+      with:
+        name: user-image
+        path: ${{ github.event.inputs.image_path }}
+
+    - name: Download uploaded image
+      uses: actions/download-artifact@v2
+      with:
+        name: user-image
+        path: downloaded-image
+
+
     - name: Clone another repository
       run: |
         git clone https://github.com/ooospooky/apple-accessories.git /tmp/apple-accessories
 
     - name: Modify README, commit, and push
       run: |
+        echo "path: ${{ github.event.inputs.image_path }}"
         cd /tmp/apple-accessories
         git config user.name "GitHub Actions Bot"
         git config user.email "github-actions[bot]@users.noreply.github.com"
