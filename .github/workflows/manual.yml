@@ -8,9 +8,6 @@ on:
       input2:
         description: 'Second input parameter'
         required: true
-      image_path:
-        description: 'Path to the local image file'
-        required: true
 
 jobs:
   test-clone-and-modify:
@@ -26,16 +23,13 @@ jobs:
 
     - name: Upload local image
       id: upload-image
-      uses: actions/upload-artifact@v2
+      uses: LasyIsLazy/github-upload-action@v0.2.0
       with:
-        name: user-image
-        path: ${{ github.event.inputs.image_path }}
-
-    - name: Download uploaded image
-      uses: actions/download-artifact@v2
-      with:
-        name: user-image
-        path: downloaded-image
+        access-token: ${{ secrets.PAT }}
+        file-path: /Users/johnnydai/Documents/brandImage/PlunkEV-1.png
+        owner: ooospooky
+        repo: apple-accessories
+        remote-dir: /public/test
 
     - name: Clone another repository
       run: |
@@ -58,4 +52,3 @@ jobs:
           git commit -m "feat: add text in readme"
           git remote set-url origin https://x-access-token:${{ secrets.PAT }}@github.com/ooospooky/apple-accessories.git
           git push origin test-text
-        fi
