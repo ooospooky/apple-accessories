@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { createActorContext } from "@xstate/react";
-import cartMachine from "@/xstate/cartMachine";
-import { PropsWithChildren } from "react";
+import { createActorContext } from '@xstate/react';
+import cartMachine from '@/xstate/cartMachine';
+import { PropsWithChildren } from 'react';
 
 export const CartContext = createActorContext(cartMachine);
 

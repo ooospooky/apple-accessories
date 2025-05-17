@@ -1,15 +1,13 @@
-"use client";
+'use client';
 
-import React, { useState } from "react";
-import Image from "next/image";
-import Link from "next/link";
-import { CartContext } from "@/xstate/provider";
+import React, { useState } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { CartContext } from '@/xstate/provider';
 
 export const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const totalAmount = CartContext.useSelector(
-    (state) => state.context.totalAmount
-  );
+  const totalAmount = CartContext.useSelector((state) => state.context.totalAmount);
   const handleMenuToggle = () => {
     setIsMenuOpen((prevIsMenuOpen) => !prevIsMenuOpen);
   };
@@ -18,32 +16,16 @@ export const Navbar = () => {
     <nav className="bg-white border-gray-200">
       <div className="max-w-screen-xl w-10/12 md:w-6/12 flex flex-wrap justify-evenly items-center mx-auto py-4 ">
         <Link href="/" className="flex items-center md:grow-0 grow">
-          <Image
-            src="/svg/appleLogo.svg"
-            priority
-            width={14}
-            height={44}
-            alt="appleLogo"
-          />
+          <Image src="/svg/appleLogo.svg" priority width={14} height={44} alt="appleLogo" />
         </Link>
         <Link href="/cart" className="md:order-last relative">
-          <Image
-            src="/svg/appleBag.svg"
-            height={25}
-            width={25}
-            alt=""
-            className=""
-          />
+          <Image src="/svg/appleBag.svg" height={25} width={25} alt="" className="" />
           <div
             className={`${
-              totalAmount ? "" : "hidden"
+              totalAmount ? '' : 'hidden'
             } absolute  -bottom-1 -right-2 bg-black rounded-full flex justify-center items-center`}
           >
-            <span
-              className={`${
-                totalAmount > 9 ? "text-xs py-1 px-[2px]" : "px-2"
-              }  text-white`}
-            >
+            <span className={`${totalAmount > 9 ? 'text-xs py-1 px-[2px]' : 'px-2'}  text-white`}>
               {totalAmount > 99 ? `99+` : totalAmount}
             </span>
           </div>
@@ -73,9 +55,7 @@ export const Navbar = () => {
           </svg>
         </button>
         <div
-          className={`w-full md:block  grow md:w-auto ${
-            isMenuOpen ? "" : "hidden "
-          }`}
+          className={`w-full md:block  grow md:w-auto ${isMenuOpen ? '' : 'hidden '}`}
           id="navbar-default"
         >
           <ul className="font-medium flex flex-col pl-0 p-4 md:p-0 mt-4 rounded-lg md:flex-row md:justify-evenly  md:mt-0 md:border-0 md:bg-white ">

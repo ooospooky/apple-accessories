@@ -1,18 +1,17 @@
-"use client"
-import Link from "next/link";
-import React, { useEffect } from "react";
-import { shootFireworks } from '../../lib/utils'
+'use client';
+import Link from 'next/link';
+import React, { useEffect } from 'react';
+import { shootFireworks } from '../../lib/utils';
 
 const Success = () => {
   //只在初次render時呈現firework animation
   useEffect(() => {
     shootFireworks();
-  }, [])
+  }, []);
 
   return (
     <div className=" h-screen w-full ">
       <div className="bg-white p-6  md:mx-auto mt-16">
-
         {/* 成功svg */}
         <SuccessIcon />
         <div className="text-center">
@@ -42,11 +41,11 @@ const GoBackLink = () => (
   <div className="py-10 text-center text-2xl">
     <Link
       href="/"
-      className="px-12 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3">
+      className="px-12 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3"
+    >
       BACK HOME
     </Link>
   </div>
-
 );
 
 export default Success;

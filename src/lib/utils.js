@@ -1,4 +1,4 @@
-import confetti from "canvas-confetti";
+import confetti from 'canvas-confetti';
 
 export const shootFireworks = () => {
   const duration = 3000;
@@ -27,13 +27,13 @@ export const shootFireworks = () => {
       Object.assign({}, defaults, {
         particleCount: 70,
         origin: { x: randomInRange(0.2, 0.4), y: Math.random() - 0.2 },
-      })
+      }),
     );
     confetti(
       Object.assign({}, defaults, {
         particleCount: 70,
         origin: { x: randomInRange(0.6, 0.8), y: Math.random() - 0.2 },
-      })
+      }),
     );
   }, 250);
 };
