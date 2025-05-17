@@ -1,4 +1,4 @@
-import { loadStripe } from "@stripe/stripe-js";
+import { loadStripe } from '@stripe/stripe-js';
 
 export default async function checkout(lineItems) {
   let stripePromise = null;
@@ -11,8 +11,8 @@ export default async function checkout(lineItems) {
   const stripe = await getStripe();
 
   await stripe.redirectToCheckout({
-    mode: "payment",
-    lineItems: lineItems,
+    mode: 'payment',
+    lineItems,
     successUrl: `${window.location.origin}/success`,
     cancelUrl: window.location.origin,
   });

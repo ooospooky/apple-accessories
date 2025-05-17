@@ -1,5 +1,5 @@
-import { createMachine, assign } from "xstate";
-import { allProducts } from "@/app/components/allProducts";
+import { createMachine, assign } from 'xstate';
+import { allProducts } from '@/app/components/allProducts';
 
 interface ProductList {
   [id: string]: {
@@ -14,9 +14,9 @@ interface CartContext {
 }
 
 type CartEvents =
-  | { type: "ADD_TO_CART"; id: string; color: string }
-  | { type: "CHANGE_PRODUCT_COUNT"; id: string; color: string; number: number }
-  | { type: "DELETE_FROM_CART"; id: string; color: string };
+  | { type: 'ADD_TO_CART'; id: string; color: string }
+  | { type: 'CHANGE_PRODUCT_COUNT'; id: string; color: string; number: number }
+  | { type: 'DELETE_FROM_CART'; id: string; color: string };
 
 // init productList : {1:{total:0},2:{total:0},.....}
 const getInitialProductList = (): ProductList => {
@@ -37,20 +37,20 @@ const cartMachine = createMachine(
       context: {} as CartContext,
       events: {} as CartEvents,
     },
-    id: "cart",
-    initial: "idle",
+    id: 'cart',
+    initial: 'idle',
     context: initialContext,
     states: {
       idle: {
         on: {
           ADD_TO_CART: {
-            actions: "addToCart",
+            actions: 'addToCart',
           },
           CHANGE_PRODUCT_COUNT: {
-            actions: "changeProductCount",
+            actions: 'changeProductCount',
           },
           DELETE_FROM_CART: {
-            actions: "deleteFromCart",
+            actions: 'deleteFromCart',
           },
         },
       },
@@ -59,11 +59,10 @@ const cartMachine = createMachine(
   {
     actions: {
       addToCart: assign(({ context, event }) => {
-        if (event.type === "ADD_TO_CART") {
+        if (event.type === 'ADD_TO_CART') {
           const { id, color } = event;
           const updatedProductList = { ...context.productList };
-          updatedProductList[id][color] =
-            (updatedProductList[id][color] || 0) + 1;
+          updatedProductList[id][color] = (updatedProductList[id][color] || 0) + 1;
           updatedProductList[id].total += 1;
 
           return {
@@ -75,7 +74,7 @@ const cartMachine = createMachine(
       }),
 
       changeProductCount: assign(({ context, event }) => {
-        if (event.type === "CHANGE_PRODUCT_COUNT") {
+        if (event.type === 'CHANGE_PRODUCT_COUNT') {
           const { id, color, number } = event;
           const updatedProductList = { ...context.productList };
           const prevNumber = updatedProductList[id][color] || 0;
@@ -94,7 +93,7 @@ const cartMachine = createMachine(
       }),
 
       deleteFromCart: assign(({ context, event }) => {
-        if (event.type === "DELETE_FROM_CART") {
+        if (event.type === 'DELETE_FROM_CART') {
           const { id, color } = event;
           const updatedProductList = { ...context.productList };
           const prevNumber = updatedProductList[id][color] || 0;
@@ -110,7 +109,7 @@ const cartMachine = createMachine(
         return context;
       }),
     },
-  }
+  },
 );
 
 export default cartMachine;

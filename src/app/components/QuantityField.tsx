@@ -4,13 +4,19 @@ interface QuantityFieldProps {
   count: number;
   id: string;
   color: string;
-  handleProductCountChange: (event: React.ChangeEvent<HTMLSelectElement> | React.ChangeEvent<HTMLInputElement>, id: string, color: string) => void;
+  handleProductCountChange: (
+    event: React.ChangeEvent<HTMLSelectElement> | React.ChangeEvent<HTMLInputElement>,
+    id: string,
+    color: string,
+  ) => void;
 }
 
-
-
-const QuantityField: React.FC<QuantityFieldProps> = ({ count, id, color, handleProductCountChange }) => {
-
+const QuantityField: React.FC<QuantityFieldProps> = ({
+  count,
+  id,
+  color,
+  handleProductCountChange,
+}) => {
   return (
     <>
       {count < 10 ? (
@@ -28,7 +34,7 @@ const QuantityField: React.FC<QuantityFieldProps> = ({ count, id, color, handleP
         </select>
       ) : (
         <div className="w-32 px-6 py-3 rounded-2xl border border-[#86868b] flex flex-col">
-          <span className='text-base text-[#86868b]'>數量</span>
+          <span className="text-base text-[#86868b]">數量</span>
           <input
             className="w-full text-[#1d1d1f] text-3xl font-normal [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
             id="quantityInput"

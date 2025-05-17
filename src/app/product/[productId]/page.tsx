@@ -1,42 +1,30 @@
-"use client";
-import React, { useState } from "react";
-import { allProducts, IProduct } from "@/app/components/allProducts";
-import { OrderTimeAndDate } from "@/app/components/OrderTimeAndDate";
-import { CollectionInfo } from "@/app/components/CollectionInfo";
-import { PurchaseAssistance } from "@/app/components/PurchaseAssistance";
-import { PriceInfo } from "@/app/components/PriceInfo";
-import { ProductInfoAndCompatibility } from "@/app/components/ProductInfoAndCompatibility";
-import { ColorSelect } from "@/app/components/ColorSelect";
-import { Carousel } from "@/app/components/Carousel";
-import LoadingSvg from "@/app/components/loadingSvg";
-import { CartContext } from "@/xstate/provider";
+'use client';
+import React, { useState } from 'react';
+import { allProducts, IProduct } from '@/app/components/allProducts';
+import { OrderTimeAndDate } from '@/app/components/OrderTimeAndDate';
+import { CollectionInfo } from '@/app/components/CollectionInfo';
+import { PurchaseAssistance } from '@/app/components/PurchaseAssistance';
+import { PriceInfo } from '@/app/components/PriceInfo';
+import { ProductInfoAndCompatibility } from '@/app/components/ProductInfoAndCompatibility';
+import { ColorSelect } from '@/app/components/ColorSelect';
+import { Carousel } from '@/app/components/Carousel';
+import LoadingSvg from '@/app/components/loadingSvg';
+import { CartContext } from '@/xstate/provider';
 
-export default function ProductId({
-  params,
-}: {
-  params: { productId: string };
-}) {
+export default function ProductId({ params }: { params: { productId: string } }) {
   const { send } = CartContext.useActorRef();
   const [isLoading, setIsLoading] = useState(false);
   const [selectedColor, setSelectedColor] = useState<string | null>(null);
   // 獲取產品數據
   const foundProduct = allProducts.find((item) => item.id === params.productId);
-  const {
-    id,
-    name,
-    src,
-    price,
-    colorsType,
-    colors,
-    productInfo,
-    compatibilityInfo,
-  }: IProduct = foundProduct || ({} as IProduct);
+  const { id, name, src, price, colorsType, colors, productInfo, compatibilityInfo }: IProduct =
+    foundProduct || ({} as IProduct);
 
   //加入購物車後顯示loading回饋
   const handleAddToCart = () => {
     setIsLoading(true);
     setTimeout(() => {
-      send({ type: "ADD_TO_CART", id, color: selectedColor || "noColor" });
+      send({ type: 'ADD_TO_CART', id, color: selectedColor || 'noColor' });
       setIsLoading(false);
     }, 700);
   };
@@ -47,10 +35,10 @@ export default function ProductId({
         onClick={() => handleAddToCart()}
         disabled={isLoading}
         className={`inline-block w-full px-2 py-4 rounded-xl  text-center whitespace-no-wrap text-base font-normal bg-[#0071e3] hover:bg-[#0077ed] text-white  ${
-          isLoading ? " cursor-not-allowed" : "cursor-pointer"
+          isLoading ? ' cursor-not-allowed' : 'cursor-pointer'
         }`}
       >
-        {isLoading ? <LoadingSvg /> : "加入購物車"}
+        {isLoading ? <LoadingSvg /> : '加入購物車'}
       </button>
     </div>
   );

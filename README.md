@@ -1,6 +1,6 @@
 ## Apple Accessories Clone
 
-<a href="https://apple-accessories.vercel.app/">Check Out My Project!</a> 
+<a href="https://apple-accessories.vercel.app/">Check Out My Project!</a>
 
 This project is a clone of Apple Accessories webpage, developed using a modern tech stack consisting of **React, Next.js, and TypeScript**. The user interface is styled with the sleek and responsive **Tailwind CSS** framework. State management is handled with **XState**.
 
@@ -25,7 +25,6 @@ Use below test cards to simulate a payment, other fields can be entered freely
 - React Slick
 - Vercel
 - Stripe payment
-
 
 ## Screenshots
 
