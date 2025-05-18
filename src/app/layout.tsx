@@ -1,9 +1,13 @@
 import './globals.css';
+
 import type { Metadata } from 'next';
 import { Roboto } from 'next/font/google';
-import { Navbar } from './components/Navbar';
-import { Footer } from './components/Footer';
+
 import { CartProviders } from '@/xstate/provider';
+
+import { Footer } from './components/Footer';
+import Navbar from './components/Navbar';
+
 const roboto = Roboto({
   weight: ['400', '500', '700'],
   subsets: ['latin'],

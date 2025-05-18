@@ -1,11 +1,12 @@
 'use client';
 
-import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import React, { useState } from 'react';
+
 import { CartContext } from '@/xstate/provider';
 
-export const Navbar = () => {
+const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const totalAmount = CartContext.useSelector((state) => state.context.totalAmount);
   const handleMenuToggle = () => {
@@ -104,6 +105,7 @@ export const Navbar = () => {
               <a
                 href="https://support.apple.com/zh-tw"
                 target="_blank"
+                rel="noreferrer noopener"
                 className="block py-2  pr-4 text-gray-900 rounded md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-700 md:dark:hover:text-blue-500 md:dark:hover:bg-transparent"
               >
                 支援服務
@@ -115,3 +117,5 @@ export const Navbar = () => {
     </nav>
   );
 };
+
+export default Navbar;

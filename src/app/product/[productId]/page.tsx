@@ -1,17 +1,25 @@
 'use client';
-import React, { useState } from 'react';
+
+import { FunctionComponent, useCallback, useState } from 'react';
+
 import { allProducts, IProduct } from '@/app/components/allProducts';
-import { OrderTimeAndDate } from '@/app/components/OrderTimeAndDate';
-import { CollectionInfo } from '@/app/components/CollectionInfo';
-import { PurchaseAssistance } from '@/app/components/PurchaseAssistance';
-import { PriceInfo } from '@/app/components/PriceInfo';
-import { ProductInfoAndCompatibility } from '@/app/components/ProductInfoAndCompatibility';
-import { ColorSelect } from '@/app/components/ColorSelect';
 import { Carousel } from '@/app/components/Carousel';
+import { CollectionInfo } from '@/app/components/CollectionInfo';
+import { ColorSelect } from '@/app/components/ColorSelect';
 import LoadingSvg from '@/app/components/loadingSvg';
+import OrderTimeAndDate from '@/app/components/OrderTimeAndDate';
+import PriceInfo from '@/app/components/PriceInfo';
+import { ProductInfoAndCompatibility } from '@/app/components/ProductInfoAndCompatibility';
+import PurchaseAssistance from '@/app/components/PurchaseAssistance';
 import { CartContext } from '@/xstate/provider';
 
-export default function ProductId({ params }: { params: { productId: string } }) {
+interface ProductIdProps {
+  params: {
+    productId: string;
+  };
+}
+
+const ProductId: FunctionComponent<ProductIdProps> = ({ params }) => {
   const { send } = CartContext.useActorRef();
   const [isLoading, setIsLoading] = useState(false);
   const [selectedColor, setSelectedColor] = useState<string | null>(null);
@@ -20,19 +28,20 @@ export default function ProductId({ params }: { params: { productId: string } })
   const { id, name, src, price, colorsType, colors, productInfo, compatibilityInfo }: IProduct =
     foundProduct || ({} as IProduct);
 
-  //加入購物車後顯示loading回饋
-  const handleAddToCart = () => {
+  // 加入購物車後顯示loading回饋
+  const handleAddToCart = useCallback(() => {
     setIsLoading(true);
     setTimeout(() => {
       send({ type: 'ADD_TO_CART', id, color: selectedColor || 'noColor' });
       setIsLoading(false);
     }, 700);
-  };
+  }, [id, selectedColor, send]);
 
-  const RenderBtn = () => (
+  const RenderBtn = (
     <div>
       <button
-        onClick={() => handleAddToCart()}
+        type="button"
+        onClick={handleAddToCart}
         disabled={isLoading}
         className={`inline-block w-full px-2 py-4 rounded-xl  text-center whitespace-no-wrap text-base font-normal bg-[#0071e3] hover:bg-[#0077ed] text-white  ${
           isLoading ? ' cursor-not-allowed' : 'cursor-pointer'
@@ -73,7 +82,7 @@ export default function ProductId({ params }: { params: { productId: string } })
           <OrderTimeAndDate flexDirection="flex-col" />
 
           {/* 顯示加入購物車button */}
-          <RenderBtn />
+          {RenderBtn}
 
           {/* 表達用戶可加入收藏 */}
           <CollectionInfo />
@@ -99,4 +108,6 @@ export default function ProductId({ params }: { params: { productId: string } })
       </section>
     </div>
   );
-}
+};
+
+export default ProductId;

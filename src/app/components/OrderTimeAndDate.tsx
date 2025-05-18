@@ -1,12 +1,13 @@
-import React from 'react';
 import Image from 'next/image';
+import { FunctionComponent } from 'react';
+
 import getNextTwoDays from '../helper/getNextTwoDays';
 
-interface IorderTimeAndDate {
+interface OrderTimeAndDateProps {
   flexDirection: string;
 }
 
-export const OrderTimeAndDate: React.FC<IorderTimeAndDate> = ({ flexDirection }) => {
+const OrderTimeAndDate: FunctionComponent<OrderTimeAndDateProps> = ({ flexDirection }) => {
   return (
     <div className={`flex ${flexDirection} gap-10`}>
       <div className={`flex flex-row gap-1  ${flexDirection === 'flex-row' ? 'w-1/2' : ''}`}>
@@ -42,3 +43,5 @@ export const OrderTimeAndDate: React.FC<IorderTimeAndDate> = ({ flexDirection })
     </div>
   );
 };
+
+export default OrderTimeAndDate;

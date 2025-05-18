@@ -1,31 +1,35 @@
-import React from 'react';
 import Image from 'next/image';
-import { IProduct } from './allProducts';
 import Link from 'next/link';
+import { FunctionComponent } from 'react';
+
+import getFormattedPrice from '../helper/getFormattedPrice';
+
+import { IProduct } from './allProducts';
 
 // ProductCard 元件，用於顯示單個商品卡片
-export const ProductCard: React.FC<IProduct> = ({
+const ProductCard: FunctionComponent<IProduct> = ({
   id,
-  category,
   name,
   width,
   height,
   coverImage,
-  src,
   price,
   colors,
 }) => {
-  // 格式化價格，從數字轉為如$18,000
-  const formattedPrice = price.toLocaleString('zh-TW', {
-    style: 'currency',
-    currency: 'TWD',
-    minimumFractionDigits: 0,
-  });
-
   // 產生顏色圓圈
-  const colorCircle = (color: string) => (
-    <div key={color} className={`w-[16px] h-[16px] rounded-full ${color}`} />
-  );
+  const renderColorCircle = () => {
+    if (!colors) {
+      return null;
+    }
+
+    return (
+      <ul className="flex flex-row justify-center items-center gap-3 mb-10 sm:mb-16">
+        {colors.map((color) => (
+          <li key={color} className={`w-[16px] h-[16px] rounded-full ${color}`} />
+        ))}
+      </ul>
+    );
+  };
 
   return (
     <li
@@ -43,18 +47,18 @@ export const ProductCard: React.FC<IProduct> = ({
             alt={name}
           />
         </div>
-
         {/* 商品名稱和價格 */}
         <div>
           <h3 className="text-center font-semibold text-lg mb-10 ">{name}</h3>
-          <p className="text-center font-normal text-base mb-6 sm:mb-10">NT{formattedPrice}</p>
+          <p className="text-center font-normal text-base mb-6 sm:mb-10">
+            {getFormattedPrice(price)}
+          </p>
         </div>
-
         {/* 顏色圓圈 */}
-        <ul className="flex flex-row justify-center items-center gap-3 mb-10 sm:mb-16">
-          {colors ? colors.map(colorCircle) : colorCircle('white')}
-        </ul>
+        {renderColorCircle()}
       </Link>
     </li>
   );
 };
+
+export default ProductCard;

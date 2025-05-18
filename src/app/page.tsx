@@ -1,8 +1,11 @@
 import Image from 'next/image';
-import { iconProduct, IiconProduct } from './components/iconproduct';
 import Link from 'next/link';
+import { FunctionComponent } from 'react';
+
+import { iconProduct, IconProductProps } from './components/iconproduct';
 import SliderComponent from './components/Slider';
-const HeaderBlock: React.FC = () => (
+
+const HeaderBlock: FunctionComponent = () => (
   <div className="headblock  w-full h-full flex flex-col md:flex-row bg-[#f5f5f7] xl:px-80 py-10">
     <div className="info basis-1/2 flex flex-col justify-center items-center  gap-12">
       <h2 className="text-5xl sm:text-7xl font-semibold mx-1 leading-tight">
@@ -12,7 +15,7 @@ const HeaderBlock: React.FC = () => (
     </div>
     <div className="basis-1/2 xl:-ml-8">
       <Image
-        priority={true}
+        priority
         src="/apple-homepageIMG.png"
         alt="Homepage-IMG"
         layout="responsive"
@@ -23,9 +26,11 @@ const HeaderBlock: React.FC = () => (
   </div>
 );
 
-const BreakLine: React.FC = () => <div className="mx-auto my-20 border-t border-[#d2d2d7] "></div>;
+const BreakLine: FunctionComponent = () => (
+  <div className="mx-auto my-20 border-t border-[#d2d2d7] " />
+);
 
-const IconDisplay: React.FC<IiconProduct> = ({ product, src, alt }) => (
+const IconDisplay: FunctionComponent<IconProductProps> = ({ product, src, alt }) => (
   <li className="outline-none text-center w-48">
     <Link href={`/${alt}`}>
       <div className="m-0 align-middle p-8 inline-block relative rounded-full border-2 border-solid border-[#d2d2d7]">
@@ -45,11 +50,11 @@ const IconDisplay: React.FC<IiconProduct> = ({ product, src, alt }) => (
   </li>
 );
 
-const Home: React.FC = () => {
+const Home: FunctionComponent = () => {
   return (
     <main>
       <HeaderBlock />
-      <div className=" lg:mx-96">
+      <div className="lg:mx-96">
         <BreakLine />
         <div className="container w-full h-full mt-8 mx-auto">
           <ul className="m-0 p-0 text-center flex justify-around ">

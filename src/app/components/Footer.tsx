@@ -43,6 +43,7 @@ export const Footer = () => {
                 href="https://www.apple.com/tw/accessibility/"
                 target="_blank"
                 className="hover:underline"
+                rel="noreferrer noopener"
               >
                 輔助使用
               </a>
@@ -52,6 +53,7 @@ export const Footer = () => {
                 href="https://www.apple.com/tw/environment/"
                 target="_blank"
                 className="hover:underline"
+                rel="noreferrer noopener"
               >
                 環境
               </a>
@@ -61,6 +63,7 @@ export const Footer = () => {
                 href="https://www.apple.com/tw/privacy/"
                 target="_blank"
                 className="hover:underline"
+                rel="noreferrer noopener"
               >
                 隱私權
               </a>
@@ -70,6 +73,7 @@ export const Footer = () => {
                 href="https://www.apple.com/tw/supplier-responsibility/"
                 target="_blank"
                 className="hover:underline"
+                rel="noreferrer noopener"
               >
                 供應商責任
               </a>
@@ -86,6 +90,7 @@ export const Footer = () => {
                 href="https://www.apple.com/tw/leadership/"
                 target="_blank"
                 className="hover:underline "
+                rel="noreferrer noopener"
               >
                 Apple 領導團隊
               </a>
@@ -95,6 +100,7 @@ export const Footer = () => {
                 href="https://www.apple.com/careers/tw/"
                 target="_blank"
                 className="hover:underline"
+                rel="noreferrer noopener"
               >
                 工作機會
               </a>
@@ -104,6 +110,7 @@ export const Footer = () => {
                 href="https://www.apple.com/compliance/"
                 target="_blank"
                 className="hover:underline"
+                rel="noreferrer noopener"
               >
                 商業倫理與法規遵循
               </a>
@@ -113,6 +120,7 @@ export const Footer = () => {
                 href="https://www.apple.com/tw/contact/"
                 target="_blank"
                 className="hover:underline"
+                rel="noreferrer noopener"
               >
                 與Apple聯絡
               </a>
@@ -129,6 +137,7 @@ export const Footer = () => {
             <a
               href="https://www.apple.com/legal/privacy/tzh/"
               target="_blank"
+              rel="noreferrer noopener"
               className=" hover:underline  pr-3 border-r border-[#6e6e73]"
             >
               隱私權政策

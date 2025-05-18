@@ -17,17 +17,26 @@
     "project": "./tsconfig.json"
   },
   "rules": {
+    "react/react-in-jsx-scope": "off",
     "func-style": ["error", "declaration", { "allowArrowFunctions": true }],
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
+    "react/function-component-definition": [
+      "warn",
+      {
+        "namedComponents": "arrow-function",
+        "unnamedComponents": "arrow-function"
+      }
+    ],
     "prefer-arrow-functions/prefer-arrow-functions": [
-      "off", 
+      "off",
       {
         "disallowPrototype": true,
         "singleReturnOnly": false,
         "classPropertiesAllowed": false
       }
-    ]
-  },
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
+    ],
     "import/order": [
       "warn",
       {
