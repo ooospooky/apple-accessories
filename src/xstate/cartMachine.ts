@@ -1,4 +1,5 @@
 import { createMachine, assign } from 'xstate';
+
 import { allProducts } from '@/app/components/allProducts';
 
 interface ProductList {
@@ -20,9 +21,11 @@ type CartEvents =
 
 // init productList : {1:{total:0},2:{total:0},.....}
 const getInitialProductList = (): ProductList => {
-  return allProducts.reduce((obj: ProductList, item) => {
-    obj[item.id] = { total: 0 };
-    return obj;
+  return allProducts.reduce((acc: ProductList, item) => {
+    return {
+      ...acc,
+      [item.id]: { total: 0 },
+    };
   }, {});
 };
 
@@ -98,7 +101,7 @@ const cartMachine = createMachine(
           const updatedProductList = { ...context.productList };
           const prevNumber = updatedProductList[id][color] || 0;
 
-          delete updatedProductList[id][color]; //移除該顏色的key
+          delete updatedProductList[id][color]; // 移除該顏色的key
           updatedProductList[id].total -= prevNumber;
 
           return {

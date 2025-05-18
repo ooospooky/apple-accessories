@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
 import Image from 'next/image';
+import React, { useState } from 'react';
 
 interface CarouselPorps {
   src: { [key: string]: string[] };
   selectedColor: string | null;
 }
 
-export const Carousel: React.FC<CarouselPorps> = ({ src, selectedColor }) => {
+const Carousel: React.FC<CarouselPorps> = ({ src, selectedColor }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const handleChangeImage = (index: number) => {
@@ -27,7 +27,7 @@ export const Carousel: React.FC<CarouselPorps> = ({ src, selectedColor }) => {
       <div className="w-full flex flex-row justify-center items-center">
         {images.map((image, index) => (
           <Image
-            key={index}
+            key={image}
             src={image}
             width={70}
             height={70}
@@ -48,5 +48,7 @@ export const Carousel: React.FC<CarouselPorps> = ({ src, selectedColor }) => {
     return renderCarouselImages(src[selectedColor]);
   }
 
-  return <></>;
+  return null;
 };
+
+export default Carousel;

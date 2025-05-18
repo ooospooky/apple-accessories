@@ -3,13 +3,13 @@
 import { FunctionComponent, useCallback, useState } from 'react';
 
 import { allProducts, IProduct } from '@/app/components/allProducts';
-import { Carousel } from '@/app/components/Carousel';
-import { CollectionInfo } from '@/app/components/CollectionInfo';
-import { ColorSelect } from '@/app/components/ColorSelect';
+import Carousel from '@/app/components/Carousel';
+import CollectionInfo from '@/app/components/CollectionInfo';
+import ColorSelect from '@/app/components/ColorSelect';
 import LoadingSvg from '@/app/components/loadingSvg';
 import OrderTimeAndDate from '@/app/components/OrderTimeAndDate';
 import PriceInfo from '@/app/components/PriceInfo';
-import { ProductInfoAndCompatibility } from '@/app/components/ProductInfoAndCompatibility';
+import ProductInfoAndCompatibility from '@/app/components/ProductInfoAndCompatibility';
 import PurchaseAssistance from '@/app/components/PurchaseAssistance';
 import { CartContext } from '@/xstate/provider';
 

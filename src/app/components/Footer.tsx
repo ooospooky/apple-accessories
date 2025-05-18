@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import React from 'react';
 
-export const Footer = () => {
+const Footer = () => {
   return (
     <footer className="bg-white rounded-lg shadow py-16  dark:bg-[#f5f5f7]">
       <div className="w-8/12 mx-auto grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3 pb-10 ">
@@ -169,3 +169,5 @@ export const Footer = () => {
     </footer>
   );
 };
+
+export default Footer;
