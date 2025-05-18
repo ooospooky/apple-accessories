@@ -1,19 +1,10 @@
-import React from 'react';
 import Image from 'next/image';
-import { IProduct } from './allProducts';
 import Link from 'next/link';
+import React from 'react';
 
-export const SliderCard: React.FC<IProduct> = ({
-  id,
-  category,
-  name,
-  width,
-  height,
-  coverImage,
-  src,
-  price,
-  colors,
-}) => {
+import { IProduct } from './allProducts';
+
+const SliderCard: React.FC<IProduct> = ({ id, name, coverImage, price, colors }) => {
   const formattedPrice = price.toLocaleString('zh-TW', {
     style: 'currency',
     currency: 'TWD',
@@ -22,7 +13,7 @@ export const SliderCard: React.FC<IProduct> = ({
   return (
     <div
       key={id}
-      className={`bg-[#f2f2f2] list-none overflow-hidden rounded-3xl border-4 border-solid border-white  flex flex-col justify-center h-[550px]`}
+      className="bg-[#f2f2f2] list-none overflow-hidden rounded-3xl border-4 border-solid border-white  flex flex-col justify-center h-[550px]"
     >
       <Link href={`/product/${id}`}>
         <div className="photo px-16 m-auto h-[340px] flex justify-center items-center ">
@@ -40,10 +31,12 @@ export const SliderCard: React.FC<IProduct> = ({
         </div>
         <ul className="flex flex-row justify-center items-center gap-3 mb-16">
           {colors?.map((color) => {
-            return <div key={color} className={`w-[16px] h-[16px] rounded-full ${color}`}></div>;
+            return <div key={color} className={`w-[16px] h-[16px] rounded-full ${color}`} />;
           })}
         </ul>
       </Link>
     </div>
   );
 };
+
+export default SliderCard;

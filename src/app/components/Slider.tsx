@@ -1,11 +1,13 @@
 'use client';
-import React, { useRef } from 'react';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import { allProducts } from './allProducts';
-import { SliderCard } from './SliderCard';
+
 import Link from 'next/link';
+import { useRef } from 'react';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick-theme.css';
+import 'slick-carousel/slick/slick.css';
+
+import { allProducts } from './allProducts';
+import SliderCard from './SliderCard';
 
 const SliderComponent = () => {
   const productsCategory = [
@@ -15,11 +17,11 @@ const SliderComponent = () => {
     { type: 'watch', title: 'Apple Watch 錶帶', linkName: '錶帶' },
   ];
 
-  const sliderRef = useRef<Slider | null>(null); //用來調用prev, next按鈕
+  const sliderRef = useRef<Slider | null>(null); // 用來調用prev, next按鈕
 
   const settings = {
-    dots: true, //顯示slider下方的dot
-    infinite: true, //disables infinite loop behavior of the slider
+    dots: true, // 顯示slider下方的dot
+    infinite: true, // disables infinite loop behavior of the slider
     // slidesToShow: itemsToShow, //一次顯示幾筆資料
     // slidesToScroll: itemsToScroll, //一次滑動滑幾筆資料
     slidesToShow: 3,
@@ -54,8 +56,10 @@ const SliderComponent = () => {
         return (
           <div key={title}>
             <h2 className="text-6xl text-black text-center font-semibold pb-10">{title}</h2>
+            {/*  eslint-disable-next-line react/jsx-props-no-spreading */}
             <Slider {...settings} ref={sliderRef}>
               {allProducts.map((product) =>
+                // eslint-disable-next-line react/jsx-props-no-spreading
                 product.category === type ? <SliderCard key={product.id} {...product} /> : null,
               )}
             </Slider>

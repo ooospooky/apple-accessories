@@ -5,7 +5,7 @@ import { Roboto } from 'next/font/google';
 
 import { CartProviders } from '@/xstate/provider';
 
-import { Footer } from './components/Footer';
+import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 
 const roboto = Roboto({

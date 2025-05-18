@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const CollectionInfo = () => {
+const CollectionInfo = () => {
   return (
     <div>
       <span className="text-xl font-semibold">需要一點時間嗎？</span>
@@ -11,3 +11,5 @@ export const CollectionInfo = () => {
     </div>
   );
 };
+
+export default CollectionInfo;
