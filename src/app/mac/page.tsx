@@ -1,7 +1,9 @@
-import React from 'react';
-import Image from 'next/image';
 import type { Metadata } from 'next';
-import { ProductList } from '../components/ProductList';
+import Image from 'next/image';
+import { FunctionComponent } from 'react';
+
+import ProductList from '../components/ProductList';
+
 export const metadata: Metadata = {
   title: '購買 Mac 配件 - Apple(台灣)',
   description: 'Apple accessories store',
@@ -21,19 +23,19 @@ const Headblock = () => (
         width={986}
         height={58}
         alt="ucbc1"
-      ></Image>
+      />
       <Image
         className="mt-16 h-32"
         src="/mac/mac-cables-accessories-magsafe.png"
         width={1152}
         height={120}
         alt="ucbc2"
-      ></Image>
+      />
     </div>
   </div>
 );
 
-export default function Mac() {
+const Mac: FunctionComponent = () => {
   return (
     <div className="w-full">
       <Headblock />
@@ -41,16 +43,10 @@ export default function Mac() {
         className="text-5xl font-semibold tracking-normal pb-16 pt-24 text-center"
         data-analytics-section="Mac 精選配件"
       >
-        Mac 精選配件
+        Mac 精選配件123
       </h2>
-
-      {/* Porducts */}
-      <div className="w-full m-auto ">
-        <ul className="w-full flex flex-wrap m-0 mb-20">
-          {/* 顯示 Mac 配件列表，傳遞 type='mac' 作為參數 */}
-          <ProductList type="mac" />
-        </ul>
-      </div>
+      <ProductList type="mac" />
     </div>
   );
-}
+};
+export default Mac;

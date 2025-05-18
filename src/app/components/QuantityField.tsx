@@ -18,7 +18,7 @@ const QuantityField: React.FC<QuantityFieldProps> = ({
   handleProductCountChange,
 }) => {
   return (
-    <>
+    <div>
       {count < 10 ? (
         <select
           className=""
@@ -27,9 +27,7 @@ const QuantityField: React.FC<QuantityFieldProps> = ({
           onChange={(event) => handleProductCountChange(event, id, color)}
         >
           {[...Array(10)].map((_, index) => (
-            <option key={index + 1} value={index + 1}>
-              {index + 1 === 10 ? `${index + 1}+` : index + 1}
-            </option>
+            <option value={index + 1}>{index + 1 === 10 ? `${index + 1}+` : index + 1}</option>
           ))}
         </select>
       ) : (
@@ -45,7 +43,7 @@ const QuantityField: React.FC<QuantityFieldProps> = ({
           />
         </div>
       )}
-    </>
+    </div>
   );
 };
 
