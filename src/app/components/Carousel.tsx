@@ -15,7 +15,7 @@ const Carousel: React.FC<CarouselPorps> = ({ src, selectedColor }) => {
 
   const renderCarouselImages = (images: string[]) => (
     <>
-      <div key={currentIndex} className="animate-fade animate-once animate-duration-[500ms]">
+      <div className="animate-fade animate-once animate-duration-[500ms]">
         <Image
           src={images[currentIndex]}
           height={550}
