@@ -29,12 +29,12 @@ const ColorSelect: React.FC<ColorsSelectProps> = ({
         {colors?.map((color, index) => {
           return (
             <li key={color}>
-              <label className="flex items-center cursor-pointer" htmlFor="colorsType">
+              <label className="flex items-center cursor-pointer" htmlFor={`colorsType${color}`}>
                 <input
                   checked={selectedColor === colorsType[index]}
                   type="radio"
                   name="color"
-                  id="colorsType"
+                  id={`colorsType${color}`}
                   value={colorsType[index]}
                   className="hidden peer/color"
                   onChange={handleColorChange}
