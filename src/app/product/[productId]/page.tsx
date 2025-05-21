@@ -22,17 +22,18 @@ interface ProductIdProps {
 const ProductId: FunctionComponent<ProductIdProps> = ({ params }) => {
   const { send } = CartContext.useActorRef();
   const [isLoading, setIsLoading] = useState(false);
-  const [selectedColor, setSelectedColor] = useState<string | null>(null);
   // 獲取產品數據
   const foundProduct = allProducts.find((item) => item.id === params.productId);
   const { id, name, src, price, colorsType, colors, productInfo, compatibilityInfo }: IProduct =
     foundProduct || ({} as IProduct);
 
+  const [selectedColor, setSelectedColor] = useState<string>(colorsType?.[0] ?? 'noColor');
+
   // 加入購物車後顯示loading回饋
   const handleAddToCart = useCallback(() => {
     setIsLoading(true);
     setTimeout(() => {
-      send({ type: 'ADD_TO_CART', id, color: selectedColor || 'noColor' });
+      send({ type: 'ADD_TO_CART', id, color: selectedColor });
       setIsLoading(false);
     }, 700);
   }, [id, selectedColor, send]);
