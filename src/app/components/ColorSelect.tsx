@@ -1,13 +1,13 @@
-import React, { useEffect } from 'react';
+import { FunctionComponent, Dispatch } from 'react';
 
 interface ColorsSelectProps {
   colorsType: string[];
   colors: null | string[];
   selectedColor: string | null; // 添加 selectedColor 屬性
-  setSelectedColor: React.Dispatch<React.SetStateAction<string | null>>; // 添加 setSelectedColor 屬性
+  setSelectedColor: Dispatch<React.SetStateAction<string>>; // 添加 setSelectedColor 屬性
 }
 
-const ColorSelect: React.FC<ColorsSelectProps> = ({
+const ColorSelect: FunctionComponent<ColorsSelectProps> = ({
   colorsType,
   colors,
   selectedColor,
@@ -16,11 +16,6 @@ const ColorSelect: React.FC<ColorsSelectProps> = ({
   const handleColorChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedColor(event.target.value);
   };
-  useEffect(() => {
-    if (selectedColor === null) {
-      setSelectedColor(colorsType[0]);
-    }
-  }, [selectedColor, colorsType, setSelectedColor]);
 
   return (
     <div>
