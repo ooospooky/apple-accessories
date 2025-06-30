@@ -1,18 +1,13 @@
 import { createMachine, assign } from 'xstate';
 
 import { allProducts } from '@/app/components/allProducts';
-
-interface ProductList {
-  [id: string]: {
-    total: number;
-    [color: string]: number;
-  };
-}
-
-interface CartContext {
-  productList: ProductList;
-  totalAmount: number;
-}
+import {
+  loadCartFromStorage,
+  validateCartData,
+  saveCartToStorage,
+  type ProductList,
+  type CartContext,
+} from '@/lib/persistence';
 
 type CartEvents =
   | { type: 'ADD_TO_CART'; id: string; color: string }
@@ -29,9 +24,45 @@ const getInitialProductList = (): ProductList => {
   }, {});
 };
 
-const initialContext: CartContext = {
-  productList: getInitialProductList(),
-  totalAmount: 0,
+// 包含持久化支援的初始狀態
+const createInitialContext = (): CartContext => {
+  // 先嘗試從 localStorage 載入購物車資料
+  const persistedCart = loadCartFromStorage();
+
+  if (persistedCart) {
+    // 驗證持久化資料的完整性
+    const validProductIds = allProducts.map((product) => product.id.toString());
+    const validatedCart = validateCartData(persistedCart, validProductIds);
+
+    // 合併持久化資料與預設結構
+    const baseProductList = getInitialProductList();
+    const mergedProductList = { ...baseProductList };
+
+    // 將有效的購物車項目合併到基礎結構中
+    Object.entries(validatedCart.productList).forEach(([productId, productData]) => {
+      if (mergedProductList[productId]) {
+        mergedProductList[productId] = productData;
+      }
+    });
+
+    return {
+      productList: mergedProductList,
+      totalAmount: validatedCart.totalAmount,
+    };
+  }
+
+  // 如果沒有持久化資料，使用預設初始狀態
+  return {
+    productList: getInitialProductList(),
+    totalAmount: 0,
+  };
+};
+
+const initialContext: CartContext = createInitialContext();
+
+// Persistence action;
+const persistCartAction = ({ context }: { context: CartContext }) => {
+  saveCartToStorage(context);
 };
 
 const cartMachine = createMachine(
@@ -47,13 +78,13 @@ const cartMachine = createMachine(
       idle: {
         on: {
           ADD_TO_CART: {
-            actions: 'addToCart',
+            actions: ['addToCart', 'persistCart'],
           },
           CHANGE_PRODUCT_COUNT: {
-            actions: 'changeProductCount',
+            actions: ['changeProductCount', 'persistCart'],
           },
           DELETE_FROM_CART: {
-            actions: 'deleteFromCart',
+            actions: ['deleteFromCart', 'persistCart'],
           },
         },
       },
@@ -111,6 +142,8 @@ const cartMachine = createMachine(
         }
         return context;
       }),
+
+      persistCart: persistCartAction,
     },
   },
 );
