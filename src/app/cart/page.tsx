@@ -55,12 +55,9 @@ const Cart: FunctionComponent = () => {
     return items;
   }, [cart, keys]);
 
-  // 按下結帳按鈕後顯示loadingSvg，使用setTimeout來避免UI loadingSvg不立即更新
-  const handleCashout = useCallback(() => {
+  const handleCashout = useCallback(async () => {
     setIsLoading(true);
-    setTimeout(() => {
-      checkout(lineItems);
-    }, 100);
+    await checkout(lineItems);
   }, [lineItems]);
 
   const Summary = (
