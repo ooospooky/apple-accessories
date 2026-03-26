@@ -14,32 +14,54 @@ import getFormattedPrice from '../helper/getFormattedPrice';
 import CartHeader from './CartHeader';
 import RenderProduct from './RenderProduct';
 
-// 創建product，計算要送入stripe的資料 [{price:stripeAPI,quantity,數量}]
-const product: { price: string; quantity: number }[] = [];
-
 const Cart: FunctionComponent = () => {
   const [isLoading, setIsLoading] = useState(false);
   const cart = CartContext.useSelector((state) => state.context.productList);
-  // 取得購物車中產品的 id 陣列
-  const keys = Object.keys(cart);
 
-  const totalPrice = useMemo(() => {
-    return keys.reduce((total, id) => {
+  const keys = useMemo(() => Object.keys(cart), [cart]);
+
+  const totalPrice = useMemo(
+    () =>
+      keys.reduce((total, id) => {
+        const foundProduct = allProducts.find((item) => item.id === id);
+        if (cart[id].total > 0 && foundProduct) {
+          return total + foundProduct.price * cart[id].total;
+        }
+        return total;
+      }, 0),
+    [cart, keys],
+  );
+
+  // 將 cart 轉換成 Stripe 要求的 line items 格式
+  const lineItems = useMemo(() => {
+    const items: { price: string; quantity: number }[] = [];
+
+    keys.forEach((id) => {
       const foundProduct = allProducts.find((item) => item.id === id);
-      if (cart[id].total > 0 && foundProduct) {
-        return total + foundProduct.price * cart[id].total;
+      if (!foundProduct) return;
+
+      const { stripeKey } = foundProduct;
+
+      if (typeof stripeKey === 'string') {
+        if (cart[id].total > 0) items.push({ price: stripeKey, quantity: cart[id].total });
+      } else {
+        Object.entries(stripeKey).forEach(([colorName, priceId]) => {
+          const quantity = cart[id][colorName] ?? 0;
+          if (quantity > 0) items.push({ price: priceId, quantity });
+        });
       }
-      return total;
-    }, 0);
+    });
+
+    return items;
   }, [cart, keys]);
 
   // 按下結帳按鈕後顯示loadingSvg，使用setTimeout來避免UI loadingSvg不立即更新
   const handleCashout = useCallback(() => {
     setIsLoading(true);
     setTimeout(() => {
-      checkout(product);
+      checkout(lineItems);
     }, 100);
-  }, []);
+  }, [lineItems]);
 
   const Summary = (
     <div className="w-9/12 flex flex-col ml-auto">
