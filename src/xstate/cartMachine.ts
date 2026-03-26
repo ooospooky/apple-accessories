@@ -5,6 +5,7 @@ import {
   loadCartFromStorage,
   validateCartData,
   saveCartToStorage,
+  clearCartStorage,
   type ProductList,
   type CartContext,
 } from '@/lib/persistence';
@@ -12,7 +13,9 @@ import {
 type CartEvents =
   | { type: 'ADD_TO_CART'; id: string; color: string }
   | { type: 'CHANGE_PRODUCT_COUNT'; id: string; color: string; number: number }
-  | { type: 'DELETE_FROM_CART'; id: string; color: string };
+  | { type: 'DELETE_FROM_CART'; id: string; color: string }
+  | { type: 'HYDRATE_CART'; payload: CartContext }
+  | { type: 'CLEAR_CART' };
 
 // init productList : {1:{total:0},2:{total:0},.....}
 const getInitialProductList = (): ProductList => {
@@ -24,41 +27,32 @@ const getInitialProductList = (): ProductList => {
   }, {});
 };
 
-// 包含持久化支援的初始狀態
-const createInitialContext = (): CartContext => {
-  // 先嘗試從 localStorage 載入購物車資料
+// 從 localStorage 載入並驗證購物車資料，在 client mount 後由 provider 呼叫
+export const loadPersistedCart = (): CartContext | null => {
   const persistedCart = loadCartFromStorage();
+  if (!persistedCart) return null;
 
-  if (persistedCart) {
-    // 驗證持久化資料的完整性
-    const validProductIds = allProducts.map((product) => product.id.toString());
-    const validatedCart = validateCartData(persistedCart, validProductIds);
+  const validProductIds = allProducts.map((product) => product.id.toString());
+  const validatedCart = validateCartData(persistedCart, validProductIds);
 
-    // 合併持久化資料與預設結構
-    const baseProductList = getInitialProductList();
-    const mergedProductList = { ...baseProductList };
+  const mergedProductList = { ...getInitialProductList() };
+  Object.entries(validatedCart.productList).forEach(([productId, productData]) => {
+    if (mergedProductList[productId]) {
+      mergedProductList[productId] = productData;
+    }
+  });
 
-    // 將有效的購物車項目合併到基礎結構中
-    Object.entries(validatedCart.productList).forEach(([productId, productData]) => {
-      if (mergedProductList[productId]) {
-        mergedProductList[productId] = productData;
-      }
-    });
-
-    return {
-      productList: mergedProductList,
-      totalAmount: validatedCart.totalAmount,
-    };
-  }
-
-  // 如果沒有持久化資料，使用預設初始狀態
   return {
-    productList: getInitialProductList(),
-    totalAmount: 0,
+    productList: mergedProductList,
+    totalAmount: validatedCart.totalAmount,
   };
 };
 
-const initialContext: CartContext = createInitialContext();
+// Machine 初始值永遠是空的，確保 SSR/CSR HTML 一致
+const initialContext: CartContext = {
+  productList: getInitialProductList(),
+  totalAmount: 0,
+};
 
 // Persistence action;
 const persistCartAction = ({ context }: { context: CartContext }) => {
@@ -85,6 +79,12 @@ const cartMachine = createMachine(
           },
           DELETE_FROM_CART: {
             actions: ['deleteFromCart', 'persistCart'],
+          },
+          HYDRATE_CART: {
+            actions: ['hydrateCart'],
+          },
+          CLEAR_CART: {
+            actions: ['clearCart'],
           },
         },
       },
@@ -141,6 +141,19 @@ const cartMachine = createMachine(
           };
         }
         return context;
+      }),
+
+      hydrateCart: assign(({ event }) => {
+        if (event.type === 'HYDRATE_CART') return event.payload;
+        return {};
+      }),
+
+      clearCart: assign(() => {
+        clearCartStorage();
+        return {
+          productList: getInitialProductList(),
+          totalAmount: 0,
+        };
       }),
 
       persistCart: persistCartAction,

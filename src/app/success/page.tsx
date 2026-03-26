@@ -3,6 +3,8 @@
 import Link from 'next/link';
 import React, { useEffect } from 'react';
 
+import { CartContext } from '@/xstate/provider';
+
 import shootFireworks from '../../lib/utils';
 
 const SuccessIcon = () => (
@@ -26,10 +28,12 @@ const GoBackLink = () => (
 );
 
 const Success = () => {
-  // 只在初次render時呈現firework animation
+  const actorRef = CartContext.useActorRef();
+
   useEffect(() => {
     shootFireworks();
-  }, []);
+    actorRef.send({ type: 'CLEAR_CART' });
+  }, [actorRef]);
 
   return (
     <div className=" h-screen w-full ">
