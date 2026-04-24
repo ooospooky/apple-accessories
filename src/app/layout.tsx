@@ -2,6 +2,7 @@ import './globals.css';
 
 import type { Metadata } from 'next';
 import { Roboto } from 'next/font/google';
+import { Analytics } from '@vercel/analytics/next';
 
 import { CartProviders } from '@/xstate/provider';
 
@@ -29,6 +30,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {children}
         </CartProviders>
         <Footer />
+        <Analytics />
       </body>
     </html>
   );
