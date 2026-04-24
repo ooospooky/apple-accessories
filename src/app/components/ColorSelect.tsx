@@ -24,7 +24,11 @@ const ColorSelect: FunctionComponent<ColorsSelectProps> = ({
         {colors?.map((color, index) => {
           return (
             <li key={color}>
-              <label className="flex items-center cursor-pointer" htmlFor={`colorsType${color}`}>
+              <label
+                aria-label={color}
+                className="flex items-center cursor-pointer"
+                htmlFor={`colorsType${color}`}
+              >
                 <input
                   checked={selectedColor === colorsType[index]}
                   type="radio"
